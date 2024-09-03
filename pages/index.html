@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neo Finanças</title>
+    <title>Neo Finance</title>
+    <!-- ##### BIBLIOTECA DE ICONES DO FREEPIK ##### -->
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <!-- ##### STYLES DO CSS ##### -->
     <link rel="stylesheet" href="../assets/css/neo.css">
     <link rel="stylesheet" href="../assets/css/popUp.css">
     <link rel="stylesheet" href="../assets/css/popUpIcones.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- ##### FONTE PRINCIPAL - KODCHASAN ##### -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- ##### INICIO DO HEADER ##### -->
+    <!-- ##### CONTAINER PRINCIPAL ##### -->
     <div class="container">
         <main class="content">
             <header class="header">
+                <!-- ##### PERFIL ##### -->
                 <div class="profile">
-                    <i class="fi fi-sr-user"></i>
-                    <h1>Hello, Eneas Sukermman!</h1>
+                    <i class="fi fi-sr-user"></i> <!-- ##### FIX: MUDAR PRA FOTO DO USER ##### -->
+                    <h1>Hello, Eneas Sukermman!</h1> <!-- ##### FIX: MUDAR PRO NOME DO USER ##### -->
                 </div>
                 <div class="notification"><i class="fi fi-ss-bell"></i></div>
             </header>
+    <!-- ##### FIM DO HEADER ##### -->
 
+    <!-- ##### DASHBOARDS ##### -->
             <section class="dashboard">
+                <!-- ##### DASHBOARD CARD DO BALANÇO GERAL/PRINCIPAL ##### -->
                 <div class="balance-card">
                     <h2>Balanço Total</h2>
                     <div class="balance-details">
@@ -37,6 +45,8 @@
                             <div class="resultValue" id="resultado">$0,00</div>
                         </div>
 
+                        <!-- ##### BOTÕES COM FUNCTIONS ADICIONAIS ##### -->
+                         <!-- ##### FIX: AJEITAR MARGIN E DEFINI-LOS ##### -->
                         <div class="btnMeta">
                             <button>
                                 <img src="../assets/img/Group 37.png" alt="">
@@ -56,9 +66,13 @@
                             </button>
                         </div>
 
+                        <!-- ##### DIVISÃO IMG ##### -->
                         <div class="divisao"><img src="../assets/img/Line 2.png" alt=""></div>
 
+                        <!-- ##### SALDO X GASTOS ##### -->
                         <div class="income-expenses">
+                            <!-- ##### CORRIGIR AS IMGS MARGIN ##### -->
+                            <!-- ##### SALDO ##### -->
                             <div class="income">
                                 <img src="../assets/img/Group 37.png" alt="">
                                 <div class="income-text">
@@ -68,6 +82,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- ##### GASTOS ##### -->
                             <div class="expenses">
                                 <img src="../assets/img/Group 36.png" alt="">
                                 <div class="expenses-text">
@@ -79,32 +94,30 @@
                             </div>
                         </div>
 
+                        <!-- ##### BOTÃO QUE ENVIA TODOS OS VALORES ##### -->
                         <div class="btnadicionar">
                             <button id="openPopupBtn">
                                 <img src="../assets/img/Group 38.png" alt="">
                             </button>
                         </div>
 
-                        <!-- Popup de seleção de ícones -->
+                        <!-- ##### POPUP DE SELEÇÃO DE ICONES ##### -->
                         <div id="iconSelectionPopup" class="icon-popup">
                             <div class="icon-popup-content">
                                 <span class="icon-close-btn" id="closeIconSelectionPopupBtn">&times;</span>
                                 <h3>Escolha um Ícone</h3>
                                 <div class="icon-grid">
-                                    <!-- ícones -->
+                                   <!-- ##### ICONES ##### -->
                                     <div class="icon" data-icon="icon1"><i class="fi fi-br-scissors"></i></div>
                                     <div class="icon" data-icon="icon2"><i class="fi fi-sr-home"></i></i></div>
                                     <div class="icon" data-icon="icon3"><i class="fi fi-br-smartphone"></i></div>
-                                    <div class="icon" data-icon="icon3"><i class="fi fi-sr-file-invoice-dollar"></i>
-                                    </div>
-                                    <div class="icon" data-icon="icon3"><i class="fi fi-br-money-coin-transfer"></i>
-                                    </div>
-
+                                    <div class="icon" data-icon="icon3"><i class="fi fi-sr-file-invoice-dollar"></i></div>
+                                    <div class="icon" data-icon="icon3"><i class="fi fi-br-money-coin-transfer"></i></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Popup de Adicionar Receita/Despesa -->
+                        <!-- ##### POPUP DE ADIÇÃO DE RECEITA/DESPESA ##### -->
                         <div id="popup" class="popup">
                             <div class="popup-content">
                                 <span class="close-btn" id="closePopupBtn">&times;</span>
@@ -156,6 +169,8 @@
                     </div>
                 </div>
 
+                <!-- ##### CARD DA ASSISTENTE VIRTUAL - NEO ##### -->
+                 <!-- ##### FIX: ADD UMA ANIMAÇÃO E AJEITAR O CSS ##### -->
                 <div class="assistant-card">
                     <div class="assistantText">
                         <h1>Converse com Neo, sua assistente virtual.</h1>
@@ -163,6 +178,7 @@
                     <img src="../assets/img/balao-de-pensamento (1) 1.png" alt="">
                 </div>
 
+                <!-- ##### CARD DOS GRÁFICOS COMPARATIVOS ##### -->
                 <div class="transactions-card">
                     <h2>Receitas x Despesas</h2>
                     <div class="chart">
@@ -176,7 +192,7 @@
                     </div>
                 </div>
 
-                <!-- Histórico Recente -->
+                <!-- ##### CARD DO HISTÓRICO RECENTE ##### -->
                 <div class="history-card">
                     <h2>Histórico Recente</h2>
                     <ul id="historicoList">
@@ -187,6 +203,7 @@
             </section>
         </main>
     </div>
+    <!-- ##### SCRIPTS JS FUNCTIONS ##### -->
     <script src="../assets/js/addCategorias.js"></script>
     <script src="../assets/js/openPopUp.js"></script>
     <script src="../assets/js/envioBtnAdd.js"></script>

@@ -46,6 +46,10 @@ body {
     margin-bottom: 20px;
 }
 
+.profile h1{
+    color: var(--cor-texto-titulo);
+}
+
 .notification {
     cursor: pointer;
     font-size: 30px; 
@@ -328,4 +332,12 @@ body {
 
 #historicoList li:last-child {
     margin-bottom: 0;
+}
+
+.transactions-card h2{
+    color: var(--cor-texto-titulo);
+}
+
+.resultValue{
+    color: var(--cor-texto-branco);
 }
