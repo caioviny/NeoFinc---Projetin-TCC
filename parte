@@ -1,0 +1,214 @@
+      
+                    </div>
+                </div>
+                <div class="assistant-card">
+                    <p>Converse com Neo, sua assistente virtual</p>
+                </div>
+                <div class="transactions-card">
+                    <h2>Receitas x Despesas</h2>
+                    <div class="chart">
+                        <div class="income-bar"></div>
+                        <div class="expenses-bar"></div>
+                    </div>
+                    <div class="summary">
+                        <p>Receitas: $5.500,00</p>
+                        <p>Despesas: $1.360,00</p>
+                        <p>Saldo: $4.260,00</p>
+                    </div>
+                </div>
+                <div class="history-card">
+                    <h2>Histórico Recente</h2>
+                    <ul>
+                        <li>Corte de cabelo - <span>$25</span></li>
+                        <li>Cartão de crédito - <span>$120</span></li>
+                        <li>Academia - <span>$150</span></li>
+                    </ul>
+                </div>
+                <div class="bill-card">
+                    <h2>Fatura do cartão</h2>
+                    <p>12 Dezembro - Vence Hoje</p>
+                    <p>$90,00</p>
+                </div>
+                <div class="reminder-card">
+                    <h2>Lembretes</h2>
+                    <p>Pagar aluguel - $350,00</p>
+                    <p>Em aberto</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    css historico 
+    .balance-card, .assistant-card, .transactions-card, .history-card, .bill-card, .reminder-card {
+        background-color: #a9e4b3;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra */
+        border: 1px solid #8bc089; /* Adiciona uma borda sutil para definição */
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Suaviza a interação */
+    
+        /* Melhorias visuais ao interagir */
+        cursor: pointer;
+    }
+    
+    .balance-card:hover, .assistant-card:hover, .transactions-card:hover, .history-card:hover, .bill-card:hover, .reminder-card:hover {
+        transform: translateY(-5px); /* Eleva o card ao passar o mouse */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Intensifica a sombra ao passar o mouse */
+    }
+    
+    .history-card h2 {
+        color: #2e7d32; /* Verde mais escuro para o título */
+        font-size: 1.5em; /* Tamanho de fonte maior para destaque */
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+    
+    .history-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .history-card ul li {
+        background-color: #d7f2db; /* Fundo levemente mais claro para os itens */
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+    }
+    
+    .history-card ul li:hover {
+        background-color: #c8e6ca; /* Muda o fundo ao passar o mouse */
+    }
+    
+    .history-card ul li .historico {
+        color: #2e7d32; /* Cor de texto verde escuro */
+        font-weight: 600; /* Destaca o texto */
+    }
+    
+    .history-card ul li span {
+        color: #2e7d32; /* Cor verde escura para o valor */
+        font-weight: 600;
+    }
+    
+
+
+    css
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e0f7d4;
+    }
+    
+    .container {
+        display: flex;
+    }
+    
+    .content {
+        flex: 1;
+        padding: 20px;
+        background-color: #d4f4e4;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .dashboard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .balance-card, .assistant-card, .transactions-card, .history-card, .bill-card, .reminder-card {
+        background-color: #a9e4b3;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    
+    .balance-value {
+        font-size: 40px;
+        font-weight: 600;
+        color: white;
+        letter-spacing: 3px;
+    }
+    
+    .balance-details {
+        display: flex;
+        align-items: center;
+    }
+    
+    .divider {
+        width: 2px;
+        height: 100%;
+        background-color: #003d29; /* Cor da linha vertical que separa balance-value */
+        margin: 0 20px; /* Espaçamento ao redor da linha vertical */
+    }
+    
+    .income-expenses {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -68px;
+        margin-left: 100px;
+    }
+    
+    .income, .expenses {
+        display: flex; /* Adiciona flexbox para alinhar a imagem e o texto */
+        align-items: center; /* Centraliza verticalmente a imagem e o texto */
+        background-color: #a9e4b3;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 0; /* Espaçamento vertical entre income e expenses */
+    }
+    
+    .income img, .expenses img {
+        margin-right: 10px; /* Espaço entre a imagem e o texto */
+    }
+    
+    .divider-vertical {
+        width: 2px;
+        height: 100%;
+        background-color: #00a156; /* Cor da linha vertical entre income e expenses */
+        margin: 0 10px; /* Espaçamento horizontal ao redor da linha vertical */
+    }
+    
+    .income h1, .expenses h1 {
+        margin: 0;
+        font-weight: 900;
+    }
+    
+    .income h1 {
+        color: #003d29;
+        margin-top: -19px;
+    }
+    
+    .expenses h1 {
+        color: red;
+        margin-top: -19px;
+    }
+    
+    .balance-card h2 {
+        margin-top: -6px;
+        color: #003d29;
+    }
+    
+    .profile i {
+        margin-right: 16px;
+    }
+    
+    .balance-card, .assistant-card, .transactions-card, .history-card, .bill-card, .reminder-card {
+        background-color: #a9e4b3;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    

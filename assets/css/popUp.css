@@ -1,0 +1,183 @@
+:root {
+    --verde-escuro-elegante: #002D14;
+    --sombra-suave: rgba(0, 0, 0, 0.5);
+    --verde-brilhante: #00FF85;
+    --cor-labels-clara: #A3D7C3;
+    --background-inputs: #00422A;
+    --texto-branco: #FFFFFF;
+    --placeholder-claro: #A3D7C3;
+    --texto-botao: #003115;
+    --botao-verde-brilhante: #00FF85;
+    --botao-verde-escuro-hover: #00D174;
+    --botao-icone-verde-escuro: #005D33;
+    --botao-icone-hover: #004d26;
+    --input-borda: #ccc;
+    --botao-verde: #4CAF50;
+    --botao-verde-escuro-hover: #45a049;
+}
+
+ /* Estilos do popup principal */
+.popup {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 900px;
+    height: 70%;
+    max-height: 700px;
+    background-color: var(--verde-escuro-elegante);
+    padding: 40px;
+    box-shadow: 0 10px 30px var(--sombra-suave);
+    border-radius: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+ /* Estilos do conteúdo do popup */
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    text-align: center;
+    color: var(--verde-brilhante);
+}
+
+ /* Estilos dos grupos de formulário */
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-item {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.form-item:last-child {
+    margin-right: 0;
+}
+
+ /* Estilos dos labels */
+.popup-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: var(--cor-labels-clara);
+}
+
+ /* Estilos dos inputs e selects */
+.popup-content input, .popup-content select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: var(--background-inputs);
+    color: var(--texto-branco);
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px var(--sombra-suave);
+}
+
+.popup-content input::placeholder, .popup-content select::placeholder {
+    color: var(--placeholder-claro);
+}
+
+ /* Estilos dos botões */
+.popup-content button {
+    padding: 15px;
+    font-size: 20px;
+    background-color: var(--botao-verde-brilhante);
+    color: var(--texto-botao);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.popup-content button:hover {
+    background-color: var(--botao-verde-escuro-hover);
+    transform: scale(1.05);
+}
+
+ /* Estilos do botão de fechamento */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: var(--verde-brilhante);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: var(--botao-verde-escuro-hover);
+}
+
+ /* Estilos para o botão de escolha de ícones */
+#iconeBtn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: var(--botao-icone-verde-escuro);
+    color: var(--texto-branco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#iconeBtn:hover {
+    background-color: var(--botao-icone-hover);
+    transform: scale(1.05);
+}
+
+ /* Estilos para o grupo de entrada */
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+#categoria {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--input-borda);
+    border-radius: 5px 0 0 5px;
+    background-color: var(--background-inputs);
+}
+
+#addCategoryBtn {
+    padding: 10px;
+    font-size: 20px;
+    background-color: var(--botao-verde);
+    color: var(--texto-branco);
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#addCategoryBtn:hover {
+    background-color: var(--botao-verde-escuro-hover);
+    transform: scale(1.05);
+}
+
+ /* Estilos para o select */
+#categoriaSelect {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--input-borda);
+    border-radius: 5px;
+    background-color: var(--background-inputs);
+    color: var(--texto-branco);
+}

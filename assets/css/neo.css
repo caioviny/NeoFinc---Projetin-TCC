@@ -1,0 +1,331 @@
+:root {
+    --cor-fundo-body: #e0f7d4;
+    --cor-fundo-content: #d4f4e4;
+    --cor-icone: #333;
+    --cor-icone-hover: #2ecc71;
+    --cor-sombra-hover: rgba(46, 204, 113, 0.7);
+    --cor-card: #a9e4b3;
+    --cor-texto-branco: white;
+    --cor-texto-titulo: #002D14;
+    --cor-texto-renda: #003d29;
+    --cor-texto-despesas: red;
+    --cor-botao-fundo: transparent;
+    --cor-botao-hover: rgba(0, 0, 0, 0.2);
+    --cor-texto-botao: #fff;
+    --cor-botao-meta: #002D14;
+    --cor-botao-meta-hover: #005D33;
+    --cor-texto-botao-hover: #4CAF50;
+    --cor-historico-item: #002D14;
+    --cor-historico-hover: #005D33;
+    --cor-texto-historico: #2ecc71;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-fundo-body);
+    font-family: 'kodchasan';
+}
+
+.container {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--cor-fundo-content);
+}
+
+/* Header e ícone de notificação */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.notification {
+    cursor: pointer;
+    font-size: 30px; 
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: var(--cor-icone); 
+    margin-right: 4px;
+}
+
+.notification:hover {
+    transform: scale(1.3);
+    color: var(--cor-icone-hover); 
+}
+
+.notification:hover::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; 
+    box-shadow: 0 0 15px var(--cor-sombra-hover); 
+    z-index: -1; 
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Dashboard e cartões */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.balance-card, .assistant-card, .transactions-card, .history-card, .bill-card, .reminder-card {
+    background-color: var(--cor-card);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.balance-value {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--cor-texto-branco);
+    letter-spacing: 3px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.balance-card {
+    color: var(--cor-texto-titulo);
+}
+
+.resultValue {
+    position: relative;
+    top: 0%;
+    width: 500px;
+    transform: translateY(-120%);
+}
+
+.balance-details {
+    display: flex;
+    align-items: center;
+}
+
+/* Renda e despesas */
+.income-expenses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-20%);
+    margin-left: 30px;
+}
+
+.income, .expenses {
+    display: flex;
+    align-items: center;
+    background-color: var(--cor-card);
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    right: 45%;
+}
+
+.expenses {
+    margin-left: -12px;
+}
+
+.income img, .expenses img {
+    margin-right: 10px;
+}
+
+.income-text, .expenses-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.income h3, .expenses h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.income h1, .expenses h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.expenses-text h1 {
+    color: var(--cor-texto-despesas);
+}
+
+.income-text h1 {
+    color: var(--cor-texto-renda);
+}
+
+/* Botões */
+.btnadicionar {
+    margin-left: 30px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-20%);
+}
+
+.btnadicionar button {
+    background-color: var(--cor-botao-fundo);
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btnadicionar button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px var(--cor-botao-hover);
+}
+
+.btnadicionar img {
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+.btnadicionar button:hover img {
+    filter: brightness(1.2);
+}
+
+/* Botões de meta */
+.divisao {
+    position: relative;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-20%);
+}
+
+/* Botão personalizado */
+.btnMeta button {
+    margin-top: 10px;
+    margin: 10px;
+    position: relative;
+    right: 70%;
+    transform: translateY(-20%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: var(--cor-botao-meta);
+    font-family: "Montserrat", sans-serif;
+    box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+}
+
+.btnMeta button:after {
+    content: " ";
+    width: 0%;
+    height: 100%;
+    background: var(--cor-botao-meta-hover);
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    right: 0;
+}
+
+.btnMeta button:hover::after {
+    right: auto;
+    left: 0;
+    width: 100%;
+}
+
+.btnMeta button span {
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    padding: 18px 25px;
+    color: var(--cor-texto-botao);
+    font-size: 1.125em;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    z-index: 20;
+    transition: all 0.3s ease-in-out;
+}
+
+.btnMeta button:hover span {
+    color: var(--cor-texto-botao-hover);
+    animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Card assistente */
+.assistantText h1 {
+    color: var(--cor-texto-titulo);
+}
+
+.assistant-card img {
+    margin-left: 50px;
+}
+
+/* Estilização da seção de histórico */
+.history-card {
+    background-color: var(--cor-card);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.history-card h2 {
+    font-size: 24px;
+    color: var(--cor-texto-titulo);
+    margin-bottom: 15px;
+}
+
+#historicoList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#historicoList li {
+    background-color: var(--cor-historico-item);
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+    color: var(--cor-texto-historico);
+}
+
+#historicoList li:hover {
+    background-color: var(--cor-historico-hover);
+    transform: translateY(-2px);
+}
+
+#historicoList li:last-child {
+    margin-bottom: 0;
+}

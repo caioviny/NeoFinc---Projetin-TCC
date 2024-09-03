@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Finanças</title>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="stylesheet" href="../assets/css/neo.css">
+    <link rel="stylesheet" href="../assets/css/popUp.css">
+    <link rel="stylesheet" href="../assets/css/popUpIcones.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <main class="content">
+            <header class="header">
+                <div class="profile">
+                    <i class="fi fi-sr-user"></i>
+                    <h1>Hello, Eneas Sukermman!</h1>
+                </div>
+                <div class="notification"><i class="fi fi-ss-bell"></i></div>
+            </header>
+
+            <section class="dashboard">
+                <div class="balance-card">
+                    <h2>Balanço Total</h2>
+                    <div class="balance-details">
+                        <div class="balance-value">
+                            <div class="resultValue" id="resultado">$0,00</div>
+                        </div>
+
+                        <div class="btnMeta">
+                            <button>
+                                <img src="../assets/img/Group 37.png" alt="">
+                                <span>Metas</span>
+                            </button>
+                        </div>
+                        <div class="btnMeta">
+                            <button>
+                                <img src="../assets/img/Group 37.png" alt="">
+                                <span>Metas</span>
+                            </button>
+                        </div>
+                        <div class="btnMeta">
+                            <button>
+                                <img src="../assets/img/Group 37.png" alt="">
+                                <span>Metas</span>
+                            </button>
+                        </div>
+
+                        <div class="divisao"><img src="../assets/img/Line 2.png" alt=""></div>
+
+                        <div class="income-expenses">
+                            <div class="income">
+                                <img src="../assets/img/Group 37.png" alt="">
+                                <div class="income-text">
+                                    <h3>Saldo</h3>
+                                    <div id="resultadoReceita">
+                                        <h1>$0,00</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="expenses">
+                                <img src="../assets/img/Group 36.png" alt="">
+                                <div class="expenses-text">
+                                    <h3>Gastos</h3>
+                                    <div id="resultadoDespesa">
+                                        <h1>$0,00</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btnadicionar">
+                            <button id="openPopupBtn">
+                                <img src="../assets/img/Group 38.png" alt="">
+                            </button>
+                        </div>
+
+                        <!-- Popup de seleção de ícones -->
+                        <div id="iconSelectionPopup" class="icon-popup">
+                            <div class="icon-popup-content">
+                                <span class="icon-close-btn" id="closeIconSelectionPopupBtn">&times;</span>
+                                <h3>Escolha um Ícone</h3>
+                                <div class="icon-grid">
+                                    <!-- ícones -->
+                                    <div class="icon" data-icon="icon1"><i class="fi fi-br-scissors"></i></div>
+                                    <div class="icon" data-icon="icon2"><i class="fi fi-sr-home"></i></i></div>
+                                    <div class="icon" data-icon="icon3"><i class="fi fi-br-smartphone"></i></div>
+                                    <div class="icon" data-icon="icon3"><i class="fi fi-sr-file-invoice-dollar"></i>
+                                    </div>
+                                    <div class="icon" data-icon="icon3"><i class="fi fi-br-money-coin-transfer"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Popup de Adicionar Receita/Despesa -->
+                        <div id="popup" class="popup">
+                            <div class="popup-content">
+                                <span class="close-btn" id="closePopupBtn">&times;</span>
+                                <h2>Adicionar Receita/Despesa</h2>
+                                <div class="form-group">
+                                    <div class="form-item">
+                                        <label for="tipo">Tipo</label>
+                                        <select name="tipo" id="tipo">
+                                            <option value="receita">Receita</option>
+                                            <option value="despesa">Despesa</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-item">
+                                        <label for="categoria">Categoria</label>
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Digite a nova categoria" id="categoria">
+                                            <button id="addCategoryBtn" type="button">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <label for="categoriaSelect">Categorias</label>
+                                        <select id="categoriaSelect">
+                                            <!-- As opções serão adicionadas dinamicamente aqui -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-item">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" placeholder="Nome" id="nome">
+                                    </div>
+                                    <div class="form-item">
+                                        <label for="valor">Valor</label>
+                                        <input type="number" placeholder="Valor" id="valor" step="0.01">
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <label for="icone">Ícone</label>
+                                    <button id="openIconSelectionPopupBtn" type="button">Escolher Ícone</button>
+                                    <!-- Exibe o ícone selecionado -->
+                                    <div id="selectedIconContainer">
+                                        <!-- Ícone selecionado será exibido aqui -->
+                                    </div>
+                                </div>
+                                <button id="submitBtn" onclick="subValores()">Enviar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="assistant-card">
+                    <div class="assistantText">
+                        <h1>Converse com Neo, sua assistente virtual.</h1>
+                    </div>
+                    <img src="../assets/img/balao-de-pensamento (1) 1.png" alt="">
+                </div>
+
+                <div class="transactions-card">
+                    <h2>Receitas x Despesas</h2>
+                    <div class="chart">
+                        <div class="income-bar"></div>
+                        <div class="expenses-bar"></div>
+                    </div>
+                    <div class="summary">
+                        <p>Receitas: $5.500,00</p>
+                        <p>Despesas: $1.360,00</p>
+                        <p>Saldo: $4.260,00</p>
+                    </div>
+                </div>
+
+                <!-- Histórico Recente -->
+                <div class="history-card">
+                    <h2>Histórico Recente</h2>
+                    <ul id="historicoList">
+                        <!-- Itens do histórico serão adicionados aqui -->
+                    </ul>
+                </div>
+
+            </section>
+        </main>
+    </div>
+    <script src="../assets/js/addCategorias.js"></script>
+    <script src="../assets/js/openPopUp.js"></script>
+    <script src="../assets/js/envioBtnAdd.js"></script>
+    <script src="../assets/js/historicoUpdate.js"></script>
+</body>
+
+</html>
