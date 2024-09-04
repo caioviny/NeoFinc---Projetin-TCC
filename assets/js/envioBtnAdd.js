@@ -21,10 +21,10 @@ function subValores() {
     var resultadoDespesa = document.getElementById('resultadoDespesa').querySelector('h1');
 
     if (!isNaN(valor)) {
-        if (tipo === "receita") {
+        if (tipo === "Receita") {
             totalReceitas += valor;
             resultadoReceita.innerText = formatarMoeda(totalReceitas);
-        } else if (tipo === "despesa") {
+        } else if (tipo === "Despesa") {
             totalDespesas += valor;
             resultadoDespesa.innerText = formatarMoeda(totalDespesas);
         }

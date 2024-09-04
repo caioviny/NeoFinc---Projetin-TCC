@@ -5,9 +5,9 @@ function adicionarAoHistorico(tipo, categoria, nome, valor, iconHTML) {
     // Cria o conteúdo do item de histórico
     var historicoContent = `
         <div class="historico">
-            ${iconHTML} <strong>${tipo}</strong> - ${categoria} - ${nome}
+            <div class="iconHistorico">${iconHTML}</div> <div class="divisaoHistorico"></div> <strong>${tipo}</strong> <div class="categoriaFormatada">${categoria}</div> <div class="resultadoNome">${nome}</div>
         </div>
-        <span>${formatarMoeda(valor)}</span>
+        <span class="resultadoHistorico">${formatarMoeda(valor)}</span>
     `;
     // Adiciona o conteúdo ao item de lista
     listItem.innerHTML = historicoContent;

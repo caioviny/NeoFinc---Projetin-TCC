@@ -342,3 +342,41 @@ body {
 .resultValue{
     color: var(--cor-texto-branco);
 }
+
+/*##### Valores formatados do histórico #####*/
+/*##### Formatando Categoria #####*/
+.historico {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iconHistorico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px; 
+    background-color: var(--cor-historico-hover);
+    padding: 10px; 
+    border-radius: 10%; 
+    width: 30px; 
+    height: 30px;
+}
+
+.categoriaFormatada {
+    color: var(--cor-historico-item);
+    background-color: var(--cor-icone-hover);
+    border-radius: 90px;
+    padding: 2px 8px;
+}
+
+/*##### Formatando Valor #####*/
+.resultadoHistorico {
+    font-size: 34px; 
+    text-align: right; 
+    font-weight: bold;
+}
+
+.resultadoNome {
+    font-size: 24px;
+}
