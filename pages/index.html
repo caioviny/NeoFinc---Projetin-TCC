@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <!-- ##### FONTE PRINCIPAL - KODCHASAN ##### -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -37,9 +40,9 @@
                 </div>
                 <div class="notification"><i class="fi fi-ss-bell"></i></div>
             </header>
-    <!-- ##### FIM DO HEADER ##### -->
+            <!-- ##### FIM DO HEADER ##### -->
 
-    <!-- ##### DASHBOARDS ##### -->
+            <!-- ##### DASHBOARDS ##### -->
             <section class="dashboard">
                 <!-- ##### DASHBOARD CARD DO BALANÇO GERAL/PRINCIPAL ##### -->
                 <div class="balance-card">
@@ -49,53 +52,69 @@
                             <div class="resultValue" id="resultado">$0,00</div>
                         </div>
 
+                        <div class="filtroDados">
+                            <label for="filtro">Filtro</label>
+                            <select name="filtroDados" id="filtroDados">
+                                <option value="ontem">Diário</option>
+                                <option value="ontem">Ontem</option>
+                                <option value="semanaPassada">Semana Passada</option>
+                                <option value="mesPassado">Mes Passado</option>
+                            </select>
+                        </div>
+
                         <!-- ##### BOTÕES COM FUNCTIONS ADICIONAIS ##### -->
-                         <!-- ##### FIX: AJEITAR MARGIN E DEFINI-LOS ##### -->
-                        <div class="btnMeta">
-                            <button>
-                                <img src="../assets/img/Group 37.png" alt="">
-                                <span>Metas</span>
-                            </button>
-                        </div>
-                        <div class="btnMeta">
-                            <button>
-                                <img src="../assets/img/Group 37.png" alt="">
-                                <span>Metas</span>
-                            </button>
-                        </div>
-                        <div class="btnMeta">
-                            <button>
-                                <img src="../assets/img/Group 37.png" alt="">
-                                <span>Metas</span>
-                            </button>
+                        <!-- ##### FIX: AJEITAR MARGIN E DEFINI-LOS ##### -->
+                        <div class="containerBtn">
+
+                            <div class="btnMeta">
+                                <button>
+                                    <img src="../assets/img/Group 37.png" alt="">
+                                    <span>Metas</span>
+                                </button>
+                            </div>
+                            <div class="btnMeta">
+                                <button>
+                                    <img src="../assets/img/Group 37.png" alt="">
+                                    <span>Metas</span>
+                                </button>
+                            </div>
+                            <div class="btnMeta">
+                                <button>
+                                    <img src="../assets/img/Group 37.png" alt="">
+                                    <span>Metas</span>
+                                </button>
+                            </div>
+
+                            <!-- ##### DIVISÃO IMG ##### -->
+                            <div class="divisao"><img src="../assets/img/Line 2.png" alt=""></div>
                         </div>
 
-                        <!-- ##### DIVISÃO IMG ##### -->
-                        <div class="divisao"><img src="../assets/img/Line 2.png" alt=""></div>
-
-                        <!-- ##### SALDO X GASTOS ##### -->
-                        <div class="income-expenses">
-                            <!-- ##### CORRIGIR AS IMGS MARGIN ##### -->
-                            <!-- ##### SALDO ##### -->
-                            <div class="income">
-                                <img src="../assets/img/Group 37.png" alt="">
-                                <div class="income-text">
-                                    <h3>Saldo</h3>
-                                    <div id="resultadoReceita">
-                                        <h1>$0,00</h1>
+                        <div class="containerGastosDespesas">
+                            <!-- ##### SALDO X GASTOS ##### -->
+                            <div class="income-expenses">
+                                <!-- ##### CORRIGIR AS IMGS MARGIN ##### -->
+                                <!-- ##### SALDO ##### -->
+                                <div class="income">
+                                    <img src="../assets/img/Group 37.png" alt="">
+                                    <div class="income-text">
+                                        <h3>Saldo</h3>
+                                        <div id="resultadoReceita">
+                                            <h1>$0,00</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ##### GASTOS ##### -->
+                                <div class="expenses">
+                                    <img src="../assets/img/Group 36.png" alt="">
+                                    <div class="expenses-text">
+                                        <h3>Gastos</h3>
+                                        <div id="resultadoDespesa">
+                                            <h1>$0,00</h1>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- ##### GASTOS ##### -->
-                            <div class="expenses">
-                                <img src="../assets/img/Group 36.png" alt="">
-                                <div class="expenses-text">
-                                    <h3>Gastos</h3>
-                                    <div id="resultadoDespesa">
-                                        <h1>$0,00</h1>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <!-- ##### BOTÃO QUE ENVIA TODOS OS VALORES ##### -->
@@ -111,18 +130,20 @@
                                 <span class="icon-close-btn" id="closeIconSelectionPopupBtn">&times;</span>
                                 <h3>Escolha um Ícone</h3>
                                 <div class="icon-grid">
-                                   <!-- ##### ICONES ##### -->
+                                    <!-- ##### ICONES ##### -->
                                     <div class="icon" data-icon="icon1"><i class="fi fi-br-scissors"></i></div>
                                     <div class="icon" data-icon="icon2"><i class="fi fi-sr-home"></i></i></div>
                                     <div class="icon" data-icon="icon3"><i class="fi fi-br-smartphone"></i></div>
-                                    <div class="icon" data-icon="icon4"><i class="fi fi-sr-file-invoice-dollar"></i></div>
-                                    <div class="icon" data-icon="icon5"><i class="fi fi-br-money-coin-transfer"></i></div>
+                                    <div class="icon" data-icon="icon4"><i class="fi fi-sr-file-invoice-dollar"></i>
+                                    </div>
+                                    <div class="icon" data-icon="icon5"><i class="fi fi-br-money-coin-transfer"></i>
+                                    </div>
                                     <div class="icon" data-icon="icon6"><i class="fi fi-rr-laptop"></i></div>
                                     <div class="icon" data-icon="icon7"><i class="fi fi-bs-car"></i></div>
                                     <div class="icon" data-icon="icon8"><i class="fi fi-ss-wrench-alt"></i></div>
                                     <div class="icon" data-icon="icon9"><i class="fi fi-ss-car-mechanic"></i></div>
                                     <div class="icon" data-icon="icon10"><i class="fi fi-sr-shopping-cart"></i></div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -180,7 +201,7 @@
                 </div>
 
                 <!-- ##### CARD DA ASSISTENTE VIRTUAL - NEO ##### -->
-                 <!-- ##### FIX: ADD UMA ANIMAÇÃO E AJEITAR O CSS ##### -->
+                <!-- ##### FIX: ADD UMA ANIMAÇÃO E AJEITAR O CSS ##### -->
                 <div class="assistant-card">
                     <div class="assistantText">
                         <h1>Converse com Neo, sua assistente virtual.</h1>
@@ -205,7 +226,7 @@
                 <!-- ##### CARD DO HISTÓRICO RECENTE ##### -->
                 <div class="history-card">
                     <h2>Histórico Recente</h2>
-                    <ul id="historicoList"> 
+                    <ul id="historicoList">
                         <!-- Itens do histórico serão adicionados aqui -->
                     </ul>
                 </div>
@@ -214,7 +235,7 @@
         </main>
     </div>
     <!-- ##### SCRIPTS JS FUNCTIONS ##### -->
-     <script src="../assets/js/navBarExterno.js"></script>
+    <script src="../assets/js/navBarExterno.js"></script>
     <script src="../assets/js/addCategorias.js"></script>
     <script src="../assets/js/openPopUp.js"></script>
     <script src="../assets/js/envioBtnAdd.js"></script>

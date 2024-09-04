@@ -113,6 +113,7 @@ body {
 }
 
 .balance-card {
+    position: relative; 
     color: var(--cor-texto-titulo);
 }
 
@@ -127,6 +128,45 @@ body {
     display: flex;
     align-items: center;
 }
+
+.filtroDados {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.filtroDados label {
+    font-size: 14px;
+    color: var(--cor-texto-titulo); 
+    margin-bottom: 5px;
+    font-weight: bold; 
+}
+
+.filtroDados select {
+    padding: 10px 15px; 
+    background-color: var(--cor-card); 
+    color: var(--cor-texto-titulo); 
+    border: 2px solid var(--cor-botao-meta);
+    border-radius: 8px; 
+    font-size: 16px;
+    cursor: pointer; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+}
+
+.filtroDados select:hover {
+    border-color: var(--cor-botao-meta-hover); 
+    background-color: var(--cor-botao-meta-hover); 
+}
+
+.filtroDados select:focus {
+    outline: none; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
 
 /* Renda e despesas */
 .income-expenses {
@@ -183,6 +223,7 @@ body {
 
 /* Botões */
 .btnadicionar {
+    margin-top: 30px;
     margin-left: 30px;
     position: relative;
     top: 50%;
@@ -216,8 +257,15 @@ body {
 .divisao {
     position: relative;
     top: 50%;
-    right: 10%;
+    right: 80%;
     transform: translateY(-20%);
+}
+
+.containerBtn {
+    display: flex;
+    justify-content: flex-end; /* Alinha os itens à direita */
+    align-items: center; /* Centraliza os itens verticalmente */
+    padding: 10px; /* Ajuste a margem interna conforme necessário */
 }
 
 /* Botão personalizado */
@@ -225,7 +273,7 @@ body {
     margin-top: 10px;
     margin: 10px;
     position: relative;
-    right: 70%;
+    right: 250%;
     transform: translateY(-20%);
     position: relative;
     display: flex;
