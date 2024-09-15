@@ -1,0 +1,711 @@
+@import url(../root.css);
+
+/* Reset de Margem e Padding */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--fonte-principal);
+  background-color: var(--background);
+}
+
+/* Header */
+.container--header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.usuario img {
+  width: 50px;
+  height: auto;
+  margin-right: 20px;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.usuario h1 {
+  font-size: 2rem;
+}
+
+.notificacao--usuario img {
+  width: 30px;
+  height: auto;
+}
+
+/* Container do Dashboard */
+.container--dashboard {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: auto 450px;
+  width: 100%;
+  gap: 20px 10px;
+  padding: 30px;
+}
+
+/* Card Balanço */
+.card--balanco {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 200px;
+  background-color: var(--background--cards);
+  overflow: hidden;
+  padding: 0px;
+  border-radius: 15px;
+  width: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.card--balanco:hover, .card--vencimentos:hover,.card--historico-recente:hover, .card--receitasXdespesas:hover, .card--lembretes:hover{
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  background: linear-gradient(to bottom, #cfffb5, #00e060);
+}
+
+/* Lado Esquerdo do Card Balanço */
+.lado--esquerdo-bt {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.lado--esquerdo-bt span {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--fonte-cards);
+}
+
+.lado--esquerdo-bt h1 {
+  font-size: 3rem;
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Lado Direito do Card Balanço */
+.lado--direito-geral-bt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lado--direito-bt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Parte Superior e Inferior do Lado Direito */
+.parte--cima-bt,
+.parte--baixo-bt {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.parte--cima-bt img,
+.parte--baixo-bt img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--background--icon);
+  border-radius: 10px;
+  margin: 5px 30px;
+}
+
+.info--valores {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+}
+
+.parte--cima-bt .info--valores span:nth-child(1),
+.parte--baixo-bt .info--valores span:nth-child(1) {
+  font-size: 1rem;
+  width: 300px;
+  text-align: end;
+}
+
+.parte--cima-bt .info--valores span:nth-child(2) {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 2rem;
+  text-align: end;
+  color: var(--fonte-cards);
+}
+
+.parte--baixo-bt .info--valores span:nth-child(2) {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 2rem;
+  text-align: end;
+  color: red;
+}
+
+/* Botão Adicionar */
+.botao--adicionar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+
+.botao--adicionar img {
+  width: 130px;
+  height: auto;
+}
+
+/* Card Receitas X Despesas */
+.card--receitasXdespesas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background--cards);
+  height: 270px;
+  padding: 10px;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Lado Esquerdo do Card Receitas X Despesas */
+.lado--esquerdo-rd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px;
+}
+
+.lado--esquerdo-rd span {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--fonte-cards);
+}
+
+.grafico--receitasXdespesas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.grafico--receitas {
+  width: 390px;
+  height: 70px;
+  background: var(--cor-secundaria);
+  border-radius: 20px;
+}
+
+.grafico--despesas {
+  width: 180px;
+  height: 70px;
+  background-color: red;
+  border-radius: 20px;
+}
+
+/* Informações e Filtro */
+.infoXfiltro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 260px;
+  background-color: var(--verde--vidro);
+  border-radius: 15px;
+  height: 100%;
+  padding: 10px;
+  margin-right: -10px;
+}
+
+.select--filtro {
+  position: relative;
+  display: inline-block;
+  width: 200px; /* Largura do select */
+  margin-top: 10px;
+}
+
+.select--filtro select {
+  margin-bottom: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 10px 0px;
+  border: none;
+  outline: none;
+  text-align: center;
+  border-radius: 12px;
+  background-color: var(--cor-secundaria);
+  color: white;
+  font-family: var(--fonte-principal);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.select--filtro::after {
+  content: "▼";
+  position: absolute;
+  top: 40%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: white;
+  font-size: 1rem;
+}
+
+.receitas--filtro,
+.despesas--filtro,
+.saldo--filtro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.info--valores {
+  text-align: start;
+  margin: 0 0 20px 30px;
+}
+
+.info--valores span:nth-child(1) {
+  font-size: 1.25rem;
+  font-weight: bold;
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info--valores span:nth-child(2) {
+  font-size: 1.25rem;
+  font-weight: bold;
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ícones das Informações do Filtro */
+.icon--verde,
+.icon--vermelho,
+.icon--verde-claro {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.icon--verde {
+  background-color: var(--cor-secundaria);
+}
+
+.icon--vermelho {
+  background-color: red;
+}
+
+.icon--verde-claro {
+  background-color: rgba(90, 255, 0, 0.37);
+}
+
+/* Card Histórico Recente */
+.card--historico-recente {
+  display: flex;
+  flex-direction: column;
+  grid-row: span 2;
+  background-color: var(--background--cards);
+  padding: 10px;
+  border-radius: 15px;
+}
+
+/* Header do Card Histórico Recente */
+.header--card-hr {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.header--card-hr span {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--fonte-cards);
+}
+
+.header--card-hr button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #355e3b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  width: 150px;
+  font-family: var(--fonte-principal);
+  font-weight: bold;
+}
+
+/* Informações do Histórico Recente */
+.info--historico {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 20px;
+  background-color: var(--background--cards);
+  height: 60px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.info--historico:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.parte--um-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 15px;
+  height: 30px;
+}
+
+.img--categoria {
+  display: flex;
+  align-items: center;
+}
+
+.img--categoria img {
+  width: 40px;
+  height: 40px;
+  margin: 0px 10px;
+  background: var(--background--icon);
+  padding: 5px;
+  border-radius: 12px;
+}
+
+.info--detalhada {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.info--detalhada span:nth-child(1) {
+  font-size: 1.1rem;
+  text-align: start;
+}
+
+.info--detalhada span:nth-child(2) {
+  font-size: 0.9rem;
+  text-align: start;
+  text-indent: 2px;
+}
+
+.parte--dois-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 15px;
+  height: 30px;
+  gap: 5px;
+}
+
+.parte--dois-info .data--historico {
+  font-size: 1rem;
+}
+
+.parte--dois-info .valor--historico {
+  font-size: 1.25rem;
+}
+
+/* Card Vencimentos */
+.card--vencimentos {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  background-color: var(--background--cards);
+  padding: 20px;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Header do Card Vencimentos */
+.header--card-v {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.titulo--header-v {
+  display: flex;
+  align-items: center;
+}
+
+.titulo--header-v span {
+  font-size: 1.25rem;
+  background-color: var(--verde--datas);
+  color: white;
+  border-radius: 12px;
+  padding: 5px 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.titulo--header-v img {
+  width: 40px;
+  height: 40px;
+  margin: 0 20px;
+}
+
+/* Mes do Vencimento */
+.mes--vencimento {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--fonte-cards);
+}
+
+.info--descricao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Informações dos Vencimentos */
+.info--vencimentos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info--vencimentos .data--vencimento {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3rem;
+  background-color: var(--cor-secundaria);
+  color: white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin: 0 20px 0px 0px;
+  font-weight: bold;
+}
+
+.descricao--vencimento {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.descricao--vencimento span:nth-child(1) {
+  text-align: start;
+  font-size: 2.25rem;
+  text-wrap: nowrap;
+  color: var(--fonte-cards);
+}
+
+.descricao--vencimento span:nth-child(2) {
+  font-size: 3.125rem;
+  text-wrap: nowrap;
+  font-weight: bold;
+  color: var(--fonte-cards);
+}
+
+.linha--vertical-v {
+  width: 1px;
+  height: 100%;
+  background-color: rgba(0, 54, 23, 0.35);
+  margin: 0 50px;
+  border-radius: 10px;
+}
+
+.info--vencimentos .valor--vencimento {
+  font-size: 3.5rem;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  font-weight: bold;
+  color: var(--fonte-cards);
+}
+
+/* Card Lembretes */
+.card--lembretes {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  background-color: var(--background--cards);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* Header do Card Lembretes */
+.header--card-l {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header--card-l .titulo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--fonte-cards);
+}
+
+.header--card-l .descricao--lembrete {
+  font-size: 1.25rem;
+  background-color: var(--verde--datas);
+  color: white;
+  border-radius: 8px;
+  padding: 0px 20px;
+  text-align: center;
+}
+
+/* Informações do Card */
+.info--lembrete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.detalhes--info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 0px;
+}
+
+.detalhes--info .descricao--info {
+  width: 250px;
+  text-overflow: ellipsis;
+  font-size: 2rem;
+  text-wrap: nowrap;
+  overflow: hidden;
+  color: var(--fonte-cards);
+}
+
+.detalhes--info .valor--lembrete {
+  width: 250px;
+  text-overflow: ellipsis;
+  font-size: 2rem;
+  text-wrap: nowrap;
+  overflow: hidden;
+  font-weight: bold;
+  color: var(--fonte-cards);
+}
+
+.status--info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.status--info span {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--fonte-cards);
+}
+
+/* Estilo para a checkbox */
+.status--info input[type="checkbox"] {
+  appearance: none; /* Remove a aparência padrão da checkbox */
+  width: 50px; /* Largura da checkbox */
+  height: 50px; /* Altura da checkbox */
+  background-color: var(--cor-secundaria); /* Cor de fundo verde */
+  border-radius: 10px; /* Border radius */
+  cursor: pointer; /* Cursor ao passar sobre a checkbox */
+  position: relative; /* Necessário para posicionar o pseudo-elemento */
+}
+
+/* Estilo para a checkbox quando marcada */
+.status--info input[type="checkbox"]:checked::before {
+  content: "✓"; /* Símbolo de verificação */
+  position: absolute; /* Posiciona o elemento de forma absoluta */
+  top: 50%; /* Centraliza verticalmente */
+  left: 50%; /* Centraliza horizontalmente */
+  font-size: 2rem; /* Tamanho do símbolo de verificação */
+  color: #fff; /* Cor do símbolo de verificação */
+  transform: translate(-50%, -50%); /* Centraliza o símbolo de verificação */
+}
+
+/* Opcional: estilo quando a checkbox está desativada */
+.status--info input[type="checkbox"]:disabled {
+  cursor: not-allowed; /* Cursor indicando que não é clicável */
+  opacity: 0.6; /* Torna a checkbox visualmente desativada */
+  background-color: #ccc; /* Cor de fundo quando desativada */
+  border: 2px solid #aaa; /* Borda quando desativada */
+}
+
+/* Ocultar a barra de rolagem em navegadores WebKit */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ocultar a barra de rolagem e garantir rolagem em navegadores não WebKit */
+.container--dashboard {
+  overflow: auto; /* Permite rolagem */
+}
+
+/* Para navegadores que não suportam ::-webkit-scrollbar e não têm overflow: hidden */
+html,
+body {
+  overflow: auto; /* Permite rolagem */
+}
+
+@media screen and (max-width: 1300px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

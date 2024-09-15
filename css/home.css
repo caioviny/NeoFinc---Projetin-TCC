@@ -1,0 +1,171 @@
+@import url(./root.css);
+
+/* =========================
+   Global Styles
+   ========================= */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-family: var(--fonte-principal);
+  background-color: var(--background);
+}
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+/* =========================
+   Sidebar
+   ========================= */
+.sidebar {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor-terciaria);
+  width: 200px;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Oculta o scrollbar da sidebar */
+  position: relative; /* Necessário para o contêiner interno */
+  transition: transform 0.5s ease, margin-left 0.5s ease;
+}
+
+.sidebar-content {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll; /* Permite rolar */
+  -ms-overflow-style: none; /* Para Internet Explorer e Edge */
+  scrollbar-width: none; /* Para Firefox */
+}
+
+/* Para navegadores baseados em WebKit */
+.sidebar-content::-webkit-scrollbar {
+  display: none; /* Oculta o scrollbar */
+}
+.sidebar .logo--sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sidebar .logo--sidebar img {
+  width: 160px;
+  height: auto;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  line-height: 3rem;
+}
+
+.sidebar li {
+  transform: translateX(-60px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0px 8px 8px 0px;
+  transition: transform 0.6s, color 0.8s ease-in, background-color 0.2s ease-in-out;
+}
+
+.sidebar .icon--li {
+  width: 25px;
+
+  margin-right: 15px; /* Espaçamento entre o ícone e o texto */
+}
+
+/* ############################################################################## */
+.sidebar .barra--icon {
+  background-color: var(--cor-terciaria);
+  width: 6px;
+  height: 30px;
+  border-radius: 10px;
+  margin-right: 10px; /* Espaçamento entre a barra e o ícone/texto */
+}
+
+.sidebar li:hover {
+  transform: translateX(0);
+  color: rgba(255, 255, 255, 1);
+  background: rgba(11, 170, 77, 0.3);
+  transition: transform 0.6s, color 0.8s ease-in, background-color 0.2s ease-in-out;
+}
+
+/* Espaçamento do LI */
+.espacamentoLi {
+  margin-top: 140px;
+}
+
+/* Sidebar fechado */
+.sidebar.fechado {
+  transform: translateX(-200px);
+  transition: transform 0.5s ease, margin-left 0.5s ease;
+}
+
+/* =========================
+   Conteúdo
+   ========================= */
+.conteudo {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  transition: transform 0.5s ease, margin-left 0.5s ease;
+}
+
+.conteudo.alterado {
+  transform: translateX(-100px);
+  transition: transform 0.5s ease, margin-left 0.5s ease;
+}
+
+.conteudo:not(.alterado) .toggle-button {
+  display: none;
+}
+
+.conteudo.alterado .toggle-button {
+  top: 0px;
+  left: -100px;
+  transition: transform 0.5s ease, margin-left 0.5s ease;
+}
+
+/* =========================
+   Toggle Button
+   ========================= */
+.toggle-button {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  top: 0;
+  left: 0;
+  background: none;
+  color: #000000;
+  border: 2px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.5s ease, margin-left 0.5s ease;
+}
+
+.conteudo iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.conteudo iframe.visible {
+  display: block; /* Torna o iframe visível quando necessário */
+}
+
+@media screen and (max-height: 850px) {
+  .espacamentoLi {
+    margin: 80px 0;
+  }
+}
