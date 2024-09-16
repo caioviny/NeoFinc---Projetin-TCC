@@ -79,7 +79,6 @@ body {
 .card--balanco:hover, .card--vencimentos:hover,.card--historico-recente:hover, .card--receitasXdespesas:hover, .card--lembretes:hover{
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
-  background: linear-gradient(to bottom, #cfffb5, #00e060);
 }
 
 /* Lado Esquerdo do Card Balanço */
@@ -351,6 +350,7 @@ body {
   background-color: var(--background--cards);
   padding: 10px;
   border-radius: 15px;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Header do Card Histórico Recente */
@@ -584,6 +584,7 @@ body {
   background-color: var(--background--cards);
   padding: 20px;
   border-radius: 15px;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Header do Card Lembretes */
