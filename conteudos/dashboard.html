@@ -72,7 +72,7 @@
           </div>
           <!-- Botão Adicionar -->
           <div class="botao--adicionar">
-            <button id="openPopupBtn">
+            <button id="btn--abrir--popup">
               <img src="./assets/botao--adicionar.svg" alt="Adicionar" />
             </button>
 
@@ -200,11 +200,11 @@
   <!-- Fim Conteúdo -->
 
   <!-- ##### POPUP DE SELEÇÃO DE ICONES ##### -->
-  <div id="iconSelectionPopup" class="icon-popup">
+  <div id="id--selecao--icones" class="selecao--icones--popup">
     <div class="icon--popup--conteudo">
-      <span class="icon-fecha-btn" id="closeIconSelectionPopupBtn">&times;</span>
+      <span class="icon-fecha-btn" id="id--fecha--icone">&times;</span>
       <h3>Escolha um Ícone</h3>
-      <div class="icon-grid">
+      <div class="icone--grade">
         <!-- ##### ICONES ##### -->
         <div class="icon" data-icon="icon1"><i class="fi fi-br-scissors"></i></div>
         <div class="icon" data-icon="icon2"><i class="fi fi-sr-home"></i></i></div>
@@ -231,61 +231,59 @@
         <div class="icon" data-icon="icon22"><i class="fi fi-sc-music-alt"></i></div>
         <div class="icon" data-icon="icon23"><i class="fi fi-sc-speaker"></i></div>
         <div class="icon" data-icon="icon24"><i class="fi fi-sc-microphone-alt"></i></div>
-
       </div>
     </div>
   </div>
 
   <!-- ##### POPUP DE ADIÇÃO DE RECEITA/DESPESA ##### -->
-  <div id="popup" class="popup">
+  <div id="id--popup" class="popup--box">
     <div class="popup--conteudo">
-      <span class="fecha--btn" id="closePopupBtn">&times;</span>
+      <span class="fecha--btn" id="id--fecha--btn">&times;</span>
       <h2>Adicionar Receita/Despesa</h2>
-      <div class="form--grupo">
-        <div class="form--item">
-          <label for="tipo">Tipo</label>
-          <select name="tipo" id="tipo">
+      <div class="form--grupo--tipo">
+        <div class="form--item--tipo">
+          <label for="label--tipo">Tipo</label>
+          <select name="tipo" id="id--tipo">
             <option value="Receita">Receita</option>
             <option value="Despesa">Despesa</option>
           </select>
         </div>
         <div class="form-item--categoria">
-          <label for="categoria">Categoria</label>
+          <label for="label--categoria">Categoria</label>
           <div class="grupo--input">
-            <input type="text" placeholder="Digite a nova categoria" id="categoria">
-            <button id="addCategoryBtn" type="button">+</button>
+            <input type="text" placeholder="Digite a nova categoria" id="id--categoria">
+            <button id="add--tipo--categoria" type="button">+</button>
           </div>
         </div>
         <div class="form--item--categoria--select">
-          <label for="categoriaSelect">Categorias</label>
-          <select id="categoriaSelect">
+          <label for="label--select--categoria">Categorias</label>
+          <select id="categoria--select">
             <!-- As opções serão adicionadas dinamicamente aqui -->
           </select>
         </div>
       </div>
       <div class="form--grupo--nome">
         <div class="form--item--nome">
-          <label for="nome">Nome</label>
-          <input type="text" placeholder="Nome" id="nome">
+          <label for="label--nome">Nome</label>
+          <input type="text" placeholder="Nome" id="id--nome">
         </div>
         <div class="form-item--valor">
-          <label for="valor">Valor</label>
-          <input type="number" placeholder="Valor" id="valor" step="0.01">
+          <label for="label--valor">Valor</label>
+          <input type="number" placeholder="Valor" id="id--valor" step="0.01">
         </div>
       </div>
       <div class="form-item--icone">
-        <label for="icone">Ícone</label>
-        <button id="openIconSelectionPopupBtn" type="button">Escolher Ícone</button>
+        <label for="label--icone">Ícone</label>
+        <button id="abrir--selecao--icones" type="button">Escolher Ícone</button>
         <!-- Exibe o ícone selecionado -->
-        <div id="selectedIconContainer">
+        <div id="selecao--icone--container">
           <!-- Ícone selecionado será exibido aqui -->
         </div>
       </div>
       
       <div class="botao--componente">
-        <button id="submitBtn" onclick="subValores()">Enviar</button>
-      </div>
-      
+        <button id="btn--enviar" onclick="subValores()">Enviar</button>
+      </div>   
     </div>
   </div>
 

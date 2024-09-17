@@ -1,30 +1,36 @@
-document.getElementById('openPopupBtn').addEventListener('click', function () {
-    document.getElementById('popup').style.display = 'block';
+// Abrir o popup de adição de receita/despesa
+document.getElementById('btn--abrir--popup').addEventListener('click', function () {
+    document.getElementById('id--popup').style.display = 'block'; // Abre o popup principal
 });
 
-document.getElementById('closePopupBtn').addEventListener('click', function () {
-    document.getElementById('popup').style.display = 'none';
+// Fechar o popup de adição de receita/despesa
+document.getElementById('id--fecha--btn').addEventListener('click', function () {
+    document.getElementById('id--popup').style.display = 'none'; // Fecha o popup principal
 });
 
-document.getElementById('openIconSelectionPopupBtn').addEventListener('click', function () {
-    document.getElementById('iconSelectionPopup').style.display = 'flex';
+// Abrir o popup de seleção de ícones
+document.getElementById('abrir--selecao--icones').addEventListener('click', function () {
+    document.getElementById('id--selecao--icones').style.display = 'flex'; // Abre o popup de seleção de ícones
 });
 
-document.getElementById('closeIconSelectionPopupBtn').addEventListener('click', function () {
-    document.getElementById('iconSelectionPopup').style.display = 'none';
+// Fechar o popup de seleção de ícones
+document.getElementById('id--fecha--icone').addEventListener('click', function () {
+    document.getElementById('id--selecao--icones').style.display = 'none'; // Fecha o popup de seleção de ícones
 });
 
-document.querySelectorAll('#iconSelectionPopup .icon').forEach(function (iconElement) {
+// Lógica de seleção de ícones
+document.querySelectorAll('#id--selecao--icones .icon').forEach(function (iconElement) {
     iconElement.addEventListener('click', function () {
         // Atualizar o HTML do ícone selecionado
-        selectedIconHTML = iconElement.querySelector('i').outerHTML;
-        updateSelectedIcon(selectedIconHTML); // Atualiza a variável e o contêiner do ícone
+        var selectedIconHTML = iconElement.querySelector('i').outerHTML;
+        updateSelectedIcon(selectedIconHTML); // Atualiza o botão com o ícone selecionado
 
-        // Fechar o popup após a seleção
-        document.getElementById('iconSelectionPopup').style.display = 'none';
+        // Fechar o popup de seleção de ícones após a seleção
+        document.getElementById('id--selecao--icones').style.display = 'none';
     });
 });
 
+// Função para atualizar o ícone selecionado no container
 function updateSelectedIcon(iconHTML) {
-    document.getElementById('selectedIconContainer').innerHTML = iconHTML; // Atualiza o botão de ícone
+    document.getElementById('selecao--icone--container').innerHTML = iconHTML; // Atualiza o ícone exibido
 }

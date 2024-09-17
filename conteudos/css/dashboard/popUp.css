@@ -1,259 +1,133 @@
 @import url(./root.css);
 
-/* Estilos do popup principal */
-.popup {
-    display: none; 
+/* Estilos gerais do popup */
+.popup--box, .selecao--icones--popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%; /* Ampliado para uma largura mais flexível */
-    max-width: 900px;
-    height: auto; /* Ajusta a altura automaticamente */
-    max-height: 80vh; /* Ajusta a altura máxima para a tela */
-    background-color: var(--background--cards);
-    padding: 20px; /* Reduzido o padding para um layout mais enxuto */
-    box-shadow: 0 8px 24px var(--preto); /* Sombra ajustada */
-    border-radius: 15px; /* Bordas arredondadas mais sutis */
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-/* Estilos do conteúdo do popup */
-.popup-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-}
-
-/* Estilo dos títulos no popup */
-.popup-content h2 {
-    font-size: 28px; 
-    text-align: center;
-    color: var(--cor-secundaria);
-    margin: 0 0 20px; 
-}
-
-/* Estilos dos grupos de formulário */
-.form-group {
-    display: flex;
-    flex-direction: column; /* Alterado para coluna para melhor responsividade */
-    gap: 15px; /* Espaçamento entre os itens */
-    margin-bottom: 20px;
-}
-
-/* Estilos dos labels */
-.popup-content label {
-    font-size: 14px; /* Fonte menor e mais discreta */
-    color: var(--cor-secundaria);
-}
-
-/* Estilos dos inputs e selects */
-.popup-content input, .popup-content select {
-    width: 100%;
-    padding: 12px; /* Ajustado para uma entrada mais confortável */
-    font-size: 14px; /* Fonte menor e mais discreta */
-    border: 1px solid var(--cor-secundaria); /* Borda leve */
-    background-color: var(--hover); /* Fundo claro */
-    color: var(--cor-secundaria); /* Cor da fonte mais visível */
-    border-radius: 5px;
-    box-sizing: border-box; /* Garante que padding não afete a largura total */
-}
-
-/* Placeholder styles */
-.popup-content input::placeholder, .popup-content select::placeholder {
-    color: var(--placeholder-claro);
-}
-
-
-.popup-content button:hover {
-    background-color: var(--botao-verde-escuro-hover);
-    transform: scale(1.03); /* Efeito de escala mais sutil */
-}
-
-/* Estilos do botão de fechamento */
-.close-btn {
-    position: absolute;
-    top: 15px; /* Ajustado para um posicionamento mais compacto */
-    right: 15px;
-    font-size: 24px; /* Fonte reduzida para um ícone mais discreto */
-    color: var(--verde-brilhante);
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close-btn:hover {
-    color: var(--cor-secundaria);
-}
-
-/* Estilos para o botão de escolha de ícones */
-#iconeBtn {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px; /* Fonte menor para melhor integração */
-    background-color: var(--botao-icone-verde-escuro);
-    color: var(--texto-branco);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#iconeBtn:hover {
-    background-color: var(--botao-icone-hover);
-    transform: scale(1.03); /* Efeito de escala mais sutil */
-}
-
-/* Estilos para o grupo de entrada */
-.input-group {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espaçamento entre o input e o botão */
-}
-
-/* Estilo do campo de categoria */
-#categoria {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px; /* Fonte menor para melhor integração */
-    border: 1px solid var(--cor-secundaria);
-    border-radius: 5px 0 0 5px;
-    background-color: var(--hover);
-}
-
-/* Estilo do botão de adicionar categoria */
-#addCategoryBtn {
-    padding: 10px;
-    font-size: 16px;
-    background-color: var(--fonte-cards);
-    color: var(--fonte-branco-100);
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#addCategoryBtn:hover {
-    background-color: var(--botao-verde-escuro-hover);
-    transform: scale(1.03); /* Efeito de escala mais sutil */
-}
-
-/* Estilos para o select */
-#categoriaSelect {
-    width: 100%;
-    padding: 12px; /* Ajustado para conforto */
-    font-size: 14px; /* Fonte menor para melhor integração */
-    border: 1px solid var(--cor--background--animação);
-    border-radius: 5px;
-    background-color: var(--cor--background--animação);
-    color: var(--fonte-branco-100);
-    box-sizing: border-box; /* Garante que padding não afete a largura total */
-}
-
-.form-item button{
-    background-color: var(--cor-secundaria);
-    color: white;
-} 
-
-.botaoComponente {
-    display: flex; 
-    justify-content: center; 
-    margin-top: 15px;
-    background-color: var(--cor-secundaria);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.botaoComponente button {
-    color: white;
-    padding: 10px 20px; 
-    border: none;
-    font-size: 16px; 
-    cursor: pointer; 
-}
-
-.botaoComponente:hover {
-    background-color: red; 
-    transform: scale(1.03); 
-}
-
-/* Estilos do popup de ícones */
-.icon-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    max-width: 600px;
-    height: auto;
-    max-height: 80vh; /* Ajusta a altura máxima para a tela */
-    background-color: var(--cor-secundaria);
+    background-color: var(--background);
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 8px 24px var(--cor-primaria);
-    border-radius: 15px; /* Bordas arredondadas mais sutis */
-    z-index: 1001;
-    overflow-y: auto;
+    box-shadow: 0 4px 8px var(--verde--vidro);
+    z-index: 1000;
+    display: none;
+    width: 700px;
+    max-width: 100%;
 }
 
-/* Estilos do conteúdo do popup de ícones */
-.icon-popup-content {
+/* Conteúdo dos popups */
+.popup--conteudo, .icon--popup--conteudo {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: center; /* Centraliza os itens verticalmente */
+    gap: 20px;
+    font-family: var(--fonte-principal);
 }
 
-.icon-popup-content h3 {
-    margin-bottom: 15px;
-    font-size: 20px; /* Fonte menor para título */
-    color: var(--cor-primaria);
-    text-align: center;
+/* Estilo do botão de fechar */
+.fecha--btn, .icon-fecha-btn {
+    font-size: 24px;
+    color: var(--fonte-cards);
+    cursor: pointer;
+    align-self: flex-end;
 }
 
-/* Estilos do botão de fechar ícones */
-.icon-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px; /* Fonte reduzida para um ícone mais discreto */
+.fecha--btn:hover, .icon-fecha-btn:hover {
     color: var(--cor--destaque-verde);
-    cursor: pointer;
-    transition: color 0.3s ease;
 }
 
-.icon-close-btn:hover {
-    color: var(--cor-primaria);
+/* Título do popup */
+h2, h3 {
+    color: var(--cor-secundaria);
+    text-align: center;
+    font-weight: 600;
 }
 
-/* Estilos da grade de ícones */
-.icon-grid {
-    display: flex;
-    flex-wrap: wrap;
+/* Estilo da grade de ícones */
+.icone--grade {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    justify-content: center;
+    justify-items: center;
 }
 
-/* Estilos individuais dos ícones */
 .icon {
-    width: 40px; /* Tamanho reduzido para um visual mais compacto */
-    height: 40px;
-    background-color: var(--cor--destaque-verde);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: var(--background--icon);
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--fonte-branco-100);
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.icon i {
-    color: var(--verde-icone);
-    font-size: 20px; /* Fonte menor para ícones */
+    transition: background-color 0.3s ease;
 }
 
 .icon:hover {
-    background-color: var(--cor-primaria);
-    transform: scale(1.1); /* Efeito de escala sutil */
+    background-color: var(--hover);
+}
+
+/* Estilo dos inputs e botões */
+input, select, button {
+    padding: 10px;
+    border: 1px solid var(--verde--datas);
+    border-radius: 5px;
+    font-family: var(--fonte-principal);
+    background-color: var(--background--cards);
+    color: var(--fonte-cards);
+}
+
+button {
+    background-color: var(--cor--destaque-verde);
+    color: var(--fonte-branco-100);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--hover);
+}
+
+/* Estilo do form */
+.form--grupo--tipo, .form--grupo--nome {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.grupo--input {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+#selecao--icone--container {
+    margin-top: 10px;
+    background-color: var(--verde--vidro);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao--componente {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Centralização da seleção de ícones */
+.selecao--icones--popup {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    flex-direction: column;
+}
+
+.icon--popup--conteudo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    gap: 20px;
 }
