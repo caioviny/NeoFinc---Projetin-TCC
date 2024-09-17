@@ -11,14 +11,14 @@ function formatarMoeda(valor) {
 }
 
 function subValores() {
-    var inputValor = document.getElementById('valor');
+    var inputValor = document.getElementById('id--valor');
     var valor = parseFloat(inputValor.value.trim());
-    var tipo = document.getElementById('tipo').value;
-    var categoria = document.getElementById('categoriaSelect').value;
-    var nome = document.getElementById('nome').value;
-    var resultado = document.getElementById('resultado');
-    var resultadoReceita = document.getElementById('resultadoReceita').querySelector('h1');
-    var resultadoDespesa = document.getElementById('resultadoDespesa').querySelector('h1');
+    var tipo = document.getElementById('id--tipo').value;
+    var categoria = document.getElementById('categoria--select').value;
+    var nome = document.getElementById('id--nome').value;
+    var resultado = document.getElementById('balanco--valor--total');
+    var resultadoReceita = document.getElementById('resultado--receita').querySelector('span');
+    var resultadoDespesa = document.getElementById('resultado--despesa').querySelector('span');
 
     if (!isNaN(valor)) {
         if (tipo === "Receita") {
