@@ -6,10 +6,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--background);
+    background-color: #003115; /* Verde mais escuro */
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 8px var(--verde--vidro);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra mais sutil */
     z-index: 1000;
     display: none;
     width: 700px;
@@ -20,27 +20,29 @@
 .popup--conteudo, .icon--popup--conteudo {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza os itens horizontalmente */
-    justify-content: center; /* Centraliza os itens verticalmente */
+    align-items: center;
+    justify-content: center;
     gap: 20px;
     font-family: var(--fonte-principal);
+    color: #fff; /* Cor do texto no popup */
 }
 
 /* Estilo do botão de fechar */
 .fecha--btn, .icon-fecha-btn {
     font-size: 24px;
-    color: var(--fonte-cards);
+    color: #fff; /* Cor do texto no botão de fechar */
     cursor: pointer;
     align-self: flex-end;
+    transition: color 0.3s ease; /* Transição suave */
 }
 
 .fecha--btn:hover, .icon-fecha-btn:hover {
-    color: var(--cor--destaque-verde);
+    color: #00e060; /* Cor de destaque ao passar o mouse */
 }
 
 /* Título do popup */
 h2, h3 {
-    color: var(--cor-secundaria);
+    color: #fff; /* Cor do texto dos títulos */
     text-align: center;
     font-weight: 600;
 }
@@ -54,37 +56,27 @@ h2, h3 {
 }
 
 .icon {
-    background-color: var(--background--icon);
+    background-color: #003617; /* Verde mais escuro para os ícones */
     border-radius: 10px;
     padding: 15px;
-    color: var(--fonte-branco-100);
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave */
 }
 
 .icon:hover {
-    background-color: var(--hover);
+    background-color: #00e060; /* Cor de destaque ao passar o mouse */
+    transform: scale(1.1); /* Aumento leve do ícone */
 }
 
 /* Estilo dos inputs e botões */
 input, select, button {
     padding: 10px;
-    border: 1px solid var(--verde--datas);
+    border: 1px solid #00e060; /* Borda verde de destaque */
     border-radius: 5px;
     font-family: var(--fonte-principal);
-    background-color: var(--background--cards);
-    color: var(--fonte-cards);
-}
-
-button {
-    background-color: var(--cor--destaque-verde);
-    color: var(--fonte-branco-100);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: var(--hover);
+    background-color: #003115; /* Fundo do input */
+    color: #fff; /* Cor do texto */
 }
 
 /* Estilo do form */
@@ -100,9 +92,10 @@ button:hover {
     align-items: center;
 }
 
+/* Estilo do container do ícone selecionado */
 #selecao--icone--container {
     margin-top: 10px;
-    background-color: var(--verde--vidro);
+    background-color: #003617; /* Fundo do container do ícone */
     padding: 10px;
     border-radius: 5px;
     display: flex;
@@ -110,24 +103,75 @@ button:hover {
     align-items: center;
 }
 
+/* Botão Escolher Ícone */
+.form-item--icone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.form-item--icone label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* Cor do texto */
+}
+
+.form-item--icone button {
+    background-color: #00e060; /* Cor de fundo inicial */
+    color: #fff; /* Cor do texto */
+    border: none; /* Remove a borda */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Peso da fonte */
+    cursor: pointer; /* Cursor de pointer */
+    transition: all 0.3s ease; /* Transição suave para a animação */
+    outline: none; /* Remove o contorno ao focar */
+}
+
+/* Animação de hover */
+.form-item--icone button:hover {
+    background-color: #003115; /* Cor de fundo ao passar o mouse */
+    transform: scale(1.05); /* Aumenta o tamanho do botão */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar um efeito de elevação */
+}
+
+/* Animação ao clicar */
+.form-item--icone button:active {
+    transform: scale(0.98); /* Leve diminuição ao clicar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduz a sombra ao clicar */
+}
+
+/* Botão Enviar */
 .botao--componente {
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin: 20px;
 }
 
-/* Centralização da seleção de ícones */
-.selecao--icones--popup {
-    display: flex;
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
-    flex-direction: column;
+.botao--componente button {
+    background-color: #00e060; /* Cor de fundo inicial */
+    color: #fff; /* Cor do texto */
+    border: none; /* Remove a borda */
+    padding: 12px 24px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Peso da fonte */
+    cursor: pointer; /* Cursor de pointer */
+    transition: all 0.3s ease; /* Transição suave para a animação */
 }
 
-.icon--popup--conteudo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
-    gap: 20px;
+/* Animação de hover */
+.botao--componente button:hover {
+    background-color: #003115; /* Cor de fundo ao passar o mouse */
+    transform: scale(1.05); /* Aumenta o tamanho do botão */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar um efeito de elevação */
+}
+
+/* Animação ao clicar */
+.botao--componente button:active {
+    transform: scale(0.98); /* Leve diminuição ao clicar */
 }

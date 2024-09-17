@@ -90,7 +90,7 @@ body {
   justify-content: center;
 }
 
-.lado--esquerdo-bt span {
+.lado--esquerdo-bt .balanco--valor--total {
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--fonte-cards);
@@ -145,14 +145,14 @@ body {
   text-align: end;
 }
 
-.parte--cima-bt .info--valores span:nth-child(1),
-.parte--baixo-bt .info--valores span:nth-child(1) {
+.parte--cima-bt .info--valores .resultado--receita:nth-child(1),
+.parte--baixo-bt .info--valores .resultado--despesa:nth-child(1) {
   font-size: 1rem;
   width: 300px;
   text-align: end;
 }
 
-.parte--cima-bt .info--valores span:nth-child(2) {
+.parte--cima-bt .info--valores .resultado--receita:nth-child(2) {
   width: 300px;
   white-space: nowrap;
   overflow: hidden;
@@ -162,7 +162,7 @@ body {
   color: var(--fonte-cards);
 }
 
-.parte--baixo-bt .info--valores span:nth-child(2) {
+.parte--baixo-bt .info--valores .resultado--despesa:nth-child(2) {
   width: 300px;
   white-space: nowrap;
   overflow: hidden;
@@ -183,10 +183,25 @@ body {
   margin-left: 10px;
 }
 
+.botao--adicionar button {
+  background: none; /* Remove o fundo do botão */
+  border: none;     /* Remove a borda do botão */
+  padding: 0;       /* Remove o padding para que a imagem ocupe todo o espaço */
+  cursor: pointer;  /* Mostra o cursor de pointer ao passar sobre o botão */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suavização da transformação */
+}
+
 .botao--adicionar img {
   width: 130px;
   height: auto;
 }
+
+/* Animação de hover */
+.botao--adicionar button:hover {
+  transform: scale(1.1); /* Leve aumento no tamanho */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Sombra suave */
+}
+
 
 /* Card Receitas X Despesas */
 .card--receitasXdespesas {
@@ -384,82 +399,117 @@ body {
   font-weight: bold;
 }
 
-/* Informações do Histórico Recente */
-.info--historico {
+
+
+/* Estilização geral para o card do histórico */
+.card--historico-recente {
+  background-color: #f1eeff; /* Fundo claro para o card */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  padding: 16px;
+  margin: 16px 0;
+}
+
+/* Estilização do cabeçalho do card */
+.header--card-hr {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin: 10px 20px;
-  background-color: var(--background--cards);
-  height: 60px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s, box-shadow 0.2s;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Linha abaixo do cabeçalho */
+  padding-bottom: 8px;
+  margin-bottom: 8px;
 }
 
-.info--historico:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.3);
+.header--card-hr span {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #003617; /* Cor escura para o texto */
 }
 
+.header--card-hr button {
+  background-color: #00e060; /* Cor de fundo do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.header--card-hr button:hover {
+  background-color: #00b552; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilização da lista de histórico */
+.info--historico ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilização de cada item da lista */
+.info--historico li {
+  background-color: #fff; /* Fundo branco para cada item */
+  border-radius: 6px; /* Bordas arredondadas para os itens */
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve para os itens */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilização das partes internas do item */
 .parte--um-info {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 15px;
-  height: 30px;
 }
 
 .img--categoria {
-  display: flex;
-  align-items: center;
-}
-
-.img--categoria img {
   width: 40px;
   height: 40px;
-  margin: 0px 10px;
-  background: var(--background--icon);
-  padding: 5px;
-  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 54, 23, 0.1); /* Fundo leve para o ícone */
+  border-radius: 50%;
+  margin-right: 12px;
 }
 
 .info--detalhada {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-grow: 1;
 }
 
-.info--detalhada span:nth-child(1) {
-  font-size: 1.1rem;
-  text-align: start;
+.item--historico {
+  display: block;
+  font-weight: bold;
+  color: #003617;
 }
 
-.info--detalhada span:nth-child(2) {
-  font-size: 0.9rem;
-  text-align: start;
-  text-indent: 2px;
+.categoria--historico {
+  display: block;
+  color: #003115;
 }
 
+/* Estilização da segunda parte das informações */
 .parte--dois-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 15px;
-  height: 30px;
-  gap: 5px;
+  text-align: right;
 }
 
-.parte--dois-info .data--historico {
-  font-size: 1rem;
+.data--historico {
+  display: block;
+  color: #003115;
+  font-size: 0.9em;
 }
 
-.parte--dois-info .valor--historico {
-  font-size: 1.25rem;
+.valor--historico {
+  display: block;
+  font-weight: bold;
+  color: #00e060; /* Cor verde para valores */
+  font-size: 1.1em;
 }
+
+
 
 /* Card Vencimentos */
 .card--vencimentos {
@@ -710,3 +760,4 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
