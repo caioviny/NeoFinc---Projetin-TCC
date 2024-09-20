@@ -8,6 +8,9 @@ function adicionarAoHistorico(tipo, categoria, nome, valor, iconHTML) {
     var historicoList = document.getElementById('historicoList');
     var listItem = document.createElement('li');
 
+    // Define a cor do valor com base no tipo
+    var valorCor = tipo === "Receita" ? 'green' : 'red';
+
     // Cria o conteúdo do item de histórico com as classes especificadas
     var historicoContent = `
         <div class="parte--um-info">
@@ -18,8 +21,8 @@ function adicionarAoHistorico(tipo, categoria, nome, valor, iconHTML) {
             </div>
         </div>
         <div class="parte--dois-info">
-            <span class="data--historico">${new Date().toLocaleDateString('pt-BR')}</span> <!-- Exibe a data atual -->
-            <span class="valor--historico">${formatarMoeda(valor)}</span>
+            <span class="data--historico">${new Date().toLocaleDateString('pt-BR')}</span>
+            <span class="valor--historico" style="color: ${valorCor};">${formatarMoeda(valor)}</span>
         </div>
     `;
     
@@ -29,3 +32,4 @@ function adicionarAoHistorico(tipo, categoria, nome, valor, iconHTML) {
     // Adiciona o item à lista de histórico
     historicoList.appendChild(listItem);
 }
+

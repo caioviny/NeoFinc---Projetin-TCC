@@ -39,9 +39,22 @@
         <!-- Lado Esquerdo do Card -->
         <div class="lado--esquerdo-bt">
           <span>Balanço Total</span>
-          <div class="balanco--valor--total">
-            <h1 id="balanco--valor--total">R$0,00</h1> <!-- Adicionei o ID para facilitar o acesso no JS -->
-          </div>
+          <h1 id="balanco--valor--total">$ 0,00</h1>
+          <!-- Botões do balanço total -->
+          <!-- <div class="botoes">
+         <button class="botao">
+           <img src="./assets/botao--adicionar.svg" alt="Adicionar Metas" />
+           <span>Metas</span>
+         </button>
+         <button class="botao">
+           <img src="./assets/botao--adicionar.svg" alt="Adicionar Metas" />
+           <span>Metas</span>
+         </button>
+         <button class="botao">
+           <img src="./assets/botao--adicionar.svg" alt="Adicionar Metas" />
+           <span>Metas</span>
+         </button>
+       </div> -->
         </div>
         <!-- Fim Lado Esquerdo do Card -->
 
@@ -51,27 +64,22 @@
             <div class="parte--cima-bt">
               <div class="info--valores">
                 <span>Saldo</span>
-                <div class="resultado--receita" id="resultado--receita"> <!-- Removi o <span> desnecessário -->
-                  R$0,00
-                </div>
+                <span id="resultado--receita">$ 0,00</span>
               </div>
-              <img src="./assets/icon--saldo.svg" alt="icon--saldo" />
+              <img src="../assets/home/setinha--up--animcao.webp" alt="icon--saldo" class="icone--saldo--animacao" />
             </div>
             <div class="parte--baixo-bt">
               <div class="info--valores">
                 <span>Gastos</span>
-                <div class="resultado--despesa" id="resultado--despesa"> <!-- Removi o <span> desnecessário -->
-                  R$0,00
-                </div>
+                <span id="resultado--despesa">$ 0,00</span>
               </div>
               <img src="./assets/icon--gastos.svg" alt="icon--gastos" />
             </div>
           </div>
           <!-- Botão Adicionar -->
           <div class="botao--adicionar">
-            <button id="btn--abrir--popup">
-              <img src="./assets/botao--adicionar.svg" alt="Adicionar" />
-            </button>
+
+            <img id="btn--abrir--popup" src="./assets/botao--adicionar.svg" alt="Adicionar" />
 
           </div>
         </div>
@@ -92,7 +100,7 @@
           </ul>
         </div>
         <div class="seta--pra--baixo">
-          
+
         </div>
       </div>
       <!-- Fim Histórico Recente -->

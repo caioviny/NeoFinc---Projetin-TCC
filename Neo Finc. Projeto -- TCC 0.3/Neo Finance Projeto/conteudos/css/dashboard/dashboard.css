@@ -96,6 +96,12 @@ body {
   color: var(--fonte-cards);
 }
 
+.lado--esquerdo-bt span {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--fonte-cards);
+}
+
 .lado--esquerdo-bt h1 {
   font-size: 3rem;
   max-width: 400px;
@@ -145,31 +151,31 @@ body {
   text-align: end;
 }
 
-.parte--cima-bt .info--valores .resultado--receita:nth-child(1),
-.parte--baixo-bt .info--valores .resultado--despesa:nth-child(1) {
-  font-size: 1rem;
-  width: 300px;
-  text-align: end;
+.parte--cima-bt .info--valores span:nth-child(1),
+.parte--baixo-bt .info--valores span:nth-child(1) {
+     font-size: 1rem;
+     width: 300px;
+     text-align: end;
 }
 
-.parte--cima-bt .info--valores .resultado--receita:nth-child(2) {
-  width: 300px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 2rem;
-  text-align: end;
-  color: var(--fonte-cards);
+.parte--cima-bt .info--valores span:nth-child(2) {
+     width: 300px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     font-size: 2rem;
+     text-align: end;
+     color: var(--fonte-cards);
 }
 
-.parte--baixo-bt .info--valores .resultado--despesa:nth-child(2) {
-  width: 300px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 2rem;
-  text-align: end;
-  color: red;
+.parte--baixo-bt .info--valores span:nth-child(2) {
+     width: 300px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     font-size: 2rem;
+     text-align: end;
+     color: red;
 }
 
 /* Botão Adicionar */
@@ -183,23 +189,19 @@ body {
   margin-left: 10px;
 }
 
-.botao--adicionar button {
-  background: none; /* Remove o fundo do botão */
-  border: none;     /* Remove a borda do botão */
-  padding: 0;       /* Remove o padding para que a imagem ocupe todo o espaço */
-  cursor: pointer;  /* Mostra o cursor de pointer ao passar sobre o botão */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suavização da transformação */
-}
+
 
 .botao--adicionar img {
   width: 130px;
   height: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suavização da transformação */
 }
 
 /* Animação de hover */
-.botao--adicionar button:hover {
+.botao--adicionar img:hover {
   transform: scale(1.1); /* Leve aumento no tamanho */
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suavização da transformação */
 }
 
 
@@ -401,14 +403,7 @@ body {
 
 
 
-/* Estilização geral para o card do histórico */
-.card--historico-recente {
-  background-color: #f1eeff; /* Fundo claro para o card */
-  border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  padding: 16px;
-  margin: 16px 0;
-}
+
 
 /* Estilização do cabeçalho do card */
 .header--card-hr {
@@ -445,6 +440,13 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 420px;
+  overflow: auto; /* mantém a rolagem */
+  scrollbar-width: none; /* para Firefox */
+}
+
+.info--historico ul::-webkit-scrollbar {
+  display: none; /* para Chrome, Safari e Edge */
 }
 
 /* Estilização de cada item da lista */
@@ -505,7 +507,6 @@ body {
 .valor--historico {
   display: block;
   font-weight: bold;
-  color: #00e060; /* Cor verde para valores */
   font-size: 1.1em;
 }
 
@@ -760,4 +761,3 @@ body {
     grid-template-columns: 1fr;
   }
 }
-
