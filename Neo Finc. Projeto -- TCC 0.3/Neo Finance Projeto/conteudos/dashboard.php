@@ -16,6 +16,7 @@
 </head>
 
 <body>
+<div class="conteudo" id="conteudo">
   <!-- Início Header -->
   <div class="container--header">
     <header class="perfil">
