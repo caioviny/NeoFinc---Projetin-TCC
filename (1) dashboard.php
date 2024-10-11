@@ -25,7 +25,6 @@ $total = $receitas + $despesas;
 $proporcaoReceitas = ($total > 0) ? ($receitas / $total) * 800 : 0; // Largura em pixels
 $proporcaoDespesas = ($total > 0) ? ($despesas / $total) * 800 : 0; // Largura em pixels
 
-
 // Calcular Balanço Total
 $balanco = $receitas - $despesas;
 
@@ -34,12 +33,12 @@ $queryHistorico = "SELECT tipo, nome, valor, data FROM transacoes WHERE usuario_
 $resultHistorico = mysqli_query($conn, $queryHistorico);
 
 // Consultar o próximo vencimento a partir de hoje
-$queryVencimentos = "SELECT descricao, data_vencimento, valor, categoria 
-                     FROM vencimentos 
-                     WHERE usuario_id = $userId 
-                     AND status = 'Pendente' 
-                     AND data_vencimento >= CURDATE() 
-                     ORDER BY data_vencimento ASC 
+$queryVencimentos = "SELECT descricao, data_vencimento, valor, categoria
+                     FROM vencimentos
+                     WHERE usuario_id = $userId
+                     AND status = 'Pendente'
+                     AND data_vencimento >= CURDATE()
+                     ORDER BY data_vencimento ASC
                      LIMIT 1";
 $resultVencimentos = mysqli_query($conn, $queryVencimentos);
 
@@ -81,10 +80,6 @@ function mesEmPortugues($data)
   return $meses[(int) date('m', strtotime($data))];
 }
 
-/* ======================
-  SELECT CATEGORIAS
-=========================*/
-
 // Consultando para selecionar todas as categorias
 $sql = "SELECT id, nome FROM categorias";
 $result = $conn->query($sql);
@@ -103,55 +98,102 @@ if ($result->num_rows > 0) {
   $options .= '<option value="">Nenhuma categoria encontrada</option>';
 }
 
-/* =================================
-Verifica se o formulário foi enviado
-====================================*/
-
+// Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nome = mysqli_real_escape_string($conn, $_POST['nome']);
   $valor = mysqli_real_escape_string($conn, $_POST['valor']);
   $categoria = mysqli_real_escape_string($conn, $_POST['categoria']);
-  $tipo = mysqli_real_escape_string($conn, $_POST['tipo']); // Adicionei este campo
+  $tipo = mysqli_real_escape_string($conn, $_POST['tipo']);
+
+  // Consultar o ícone da categoria selecionada
+  $queryIcone = "SELECT icone FROM categorias WHERE id = ?";
+  $stmtIcone = mysqli_prepare($conn, $queryIcone);
+  mysqli_stmt_bind_param($stmtIcone, "i", $categoria);
+  mysqli_stmt_execute($stmtIcone);
+  mysqli_stmt_bind_result($stmtIcone, $icone);
+  mysqli_stmt_fetch($stmtIcone);
+  mysqli_stmt_close($stmtIcone);
 
   // Insere os dados na tabela transacoes
-  $sql = "INSERT INTO transacoes (nome, valor, categoria_id, tipo, usuario_id) 
-          VALUES ('$nome', '$valor', '$categoria', '$tipo', $userId)";
+  $sql = "INSERT INTO transacoes (nome, valor, categoria_id, tipo, usuario_id, icone)
+          VALUES ('$nome', '$valor', '$categoria', '$tipo', $userId, '$icone')"; // Incluindo icone
 
   if (mysqli_query($conn, $sql)) {
-    echo "<script>alert('Salvo com sucesso');</script>";
+    // Redireciona para a mesma página após a inserção
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit(); // Saia para garantir que o script pare aqui
   } else {
     echo "<script>alert('Erro ao salvar: " . mysqli_error($conn) . "');</script>";
   }
 }
 
+// Consultar histórico recente de transações
+$queryHistorico = "
+    SELECT t.nome AS transacao_nome, t.valor, t.tipo, t.data, c.id AS categoria_id, c.nome AS categoria_nome, t.icone
+    FROM transacoes t
+    JOIN categorias c ON t.categoria_id = c.id
+    WHERE t.usuario_id = ?
+    ORDER BY t.data DESC
+    LIMIT 5";
 
-/* ============
- Consultar histórico recente de transações
-===============*/
+// Preparando a consulta
+$stmt = mysqli_prepare($conn, $queryHistorico);
 
-$queryHistorico = "SELECT nome, valor, tipo, data 
-                   FROM transacoes 
-                   WHERE usuario_id = $userId 
-                   ORDER BY data DESC 
-                   LIMIT 5";
-$resultHistorico = mysqli_query($conn, $queryHistorico);
+// Ligando o parâmetro
+mysqli_stmt_bind_param($stmt, "i", $userId);
+
+// Executando a consulta
+mysqli_stmt_execute($stmt);
+
+// Obtendo o resultado
+$resultHistorico = mysqli_stmt_get_result($stmt);
 
 // Inicializar uma variável para armazenar os itens do histórico
-$historicoItems = "";
+$historicoItems = ""; // Inicializar a variável para armazenar o HTML do histórico
 
-// Verifica se encontrou resultados
 if (mysqli_num_rows($resultHistorico) > 0) {
-    while ($row = mysqli_fetch_assoc($resultHistorico)) {
-        $tipoIcon = $row['tipo'] === 'receita' ? 'icon-receita.svg' : 'icon-despesa.svg'; // Defina os ícones conforme seu design
-        $historicoItems .= '<li>
-            <span class="tipo"><img src="../../assets/icons/' . $tipoIcon . '" alt="' . $row['tipo'] . ' icon"></span>
-            <span class="nome">' . htmlspecialchars($row['nome']) . '</span>
-            <span class="valor">R$ ' . number_format($row['valor'], 2, ',', '.') . '</span>
-            <span class="data">' . date('d/m/Y H:i', strtotime($row['data'])) . '</span>
+  while ($row = mysqli_fetch_assoc($resultHistorico)) {
+    // Use a string de ícone armazenada na tabela como classe
+    $tipoIcon = htmlspecialchars($row['icone']); // Pega a string do ícone
+
+    $historicoItems .= '<li>
+            <div class="parte--um-info">
+                <div class="img--categoria">
+                    <i class="' . $tipoIcon . '"></i> <!-- Aqui adiciona o ícone como classe -->
+                </div>
+                <div class="info--detalhada">
+                    <span class="nome--historico">' . htmlspecialchars($row['transacao_nome']) . '</span> <!-- Exibe o nome -->
+                    <span class="categoria--historico">' . htmlspecialchars($row['categoria_nome']) . '</span> <!-- Exibe o nome da categoria -->
+                </div>
+            </div>
+            <div class="parte--dois-info">
+                <span class="data--historico">' . date('d/m/Y', strtotime($row['data'])) . '</span> <!-- Exibe a data -->
+                <span class="valor--historico" style="color: ' . ($row['tipo'] === 'receita' ? 'green' : 'red') . ';">
+                    R$ ' . number_format($row['valor'], 2, ',', '.') . ' <!-- Exibe o valor -->
+                </span>
+            </div>
         </li>';
-    }
+  }
 } else {
-    $historicoItems .= '<li>Nenhuma transação recente encontrada.</li>';
+  $historicoItems .= '<li>Nenhuma transação recente encontrada.</li>';
+}
+
+// Fechando a declaração
+mysqli_stmt_close($stmt);
+
+// Lógica Mensagem saudação
+date_default_timezone_set('America/Sao_Paulo');
+
+// Obter a hora atual
+$hora = date("H");
+
+// Definir a saudação com base na hora
+if ($hora >= 5 && $hora < 12) {
+  $saudacao = "Bom dia";
+} elseif ($hora >= 12 && $hora < 18) {
+  $saudacao = "Boa tarde";
+} else {
+  $saudacao = "Boa noite";
 }
 
 // Fecha a conexão
@@ -175,8 +217,7 @@ $conn->close();
     <header class="perfil">
       <div class="usuario">
         <span><?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?></span>
-
-        <h1>Hello, <?php echo $_SESSION['username']; ?>!</h1>
+        <h1>Olá, <?php echo $saudacao . ' ' . $_SESSION['username']; ?>!</h1>
       </div>
       <div class="notificacao--usuario">
         <img src="../../assets/icons/sino--icon.svg" alt="icon-notificacao" />
@@ -217,9 +258,7 @@ $conn->close();
           </div>
           <!-- Botão Adicionar -->
           <div class="botao--adicionar">
-
             <img id="btn--abrir--popup" src="../../assets/icons/botao--adicionar.svg" alt="Adicionar" />
-
           </div>
         </div>
       </div>
@@ -229,20 +268,18 @@ $conn->close();
       <div class="card--historico-recente">
         <div class="header--card-hr">
           <span>Histórico Recente</span>
-          <button>Ver tudo</button>
+          <button onclick="window.location.href='./(3) historico.html';">Ver tudo</button>
         </div>
         <!-- Histórico de Transações -->
         <div class="info--historico">
           <ul id="historicoList">
-            <?php echo $historicoItems; // Itens do histórico serão exibidos aqui ?>
+            <?php echo $historicoItems; // Itens do histórico serão exibidos aqui
+            ?>
           </ul>
         </div>
         <div class="seta--pra--baixo"></div>
       </div>
       <!-- Fim Histórico Recente -->
-
-
-
 
       <!-- Card Receitas x Despesas -->
       <div class="card--receitasXdespesas">
@@ -250,8 +287,8 @@ $conn->close();
         <div class="lado--esquerdo-rd">
           <span>Receitas x Despesas</span>
           <div class="grafico--receitasXdespesas">
-            <div class="grafico--receitas" style="width: <?php echo $proporcaoReceitas; ?>px;"></div>
-            <div class="grafico--despesas" style="width: <?php echo $proporcaoDespesas; ?>px;"></div>
+            <div class="grafico--receitas" data-largura="<?php echo $proporcaoReceitas; ?>"></div>
+            <div class="grafico--despesas" data-largura="<?php echo $proporcaoDespesas; ?>"></div>
           </div>
         </div>
         <!-- Informações e Filtro -->
@@ -287,7 +324,6 @@ $conn->close();
         </div>
       </div>
 
-
       <div class="card--vencimentos">
         <div class="header--card-v">
           <div class="titulo--header-v">
@@ -300,8 +336,8 @@ $conn->close();
           <div class="info--descricao">
             <span class="data--vencimento"><?php echo date('d', strtotime($data_vencimento)); ?></span>
             <div class="descricao--vencimento">
+              <span>A pagar</span>
               <span><?php echo $descricao; ?></span>
-              <span><?php echo $categoria; ?></span>
             </div>
           </div>
           <div class="linha--vertical-v"></div>
@@ -309,8 +345,6 @@ $conn->close();
         </div>
       </div>
       <!-- Fim Card Próximos Vencimentos -->
-
-
 
       <!-- Card Lembretes -->
       <div class="card--lembretes">
@@ -334,27 +368,74 @@ $conn->close();
   </div>
   <!-- Fim Conteúdo -->
 
+  <!-- Início PopUp Adição de Item -->
+  <div class="popup-container" id="popup-container" style="display: none;">
+    <div class="popup">
+      <div class="close-btn" id="close-btn">&times;</div>
+      <h2>Adicionar Item</h2>
+      <form method="POST" action="">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" required autocomplete="off">
+        <div id="suggestions" class="suggestions-box"></div>
 
-  <form method="POST" action="">
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" required>
+        <label for="valor">Valor:</label>
+        <input type="number" name="valor" required>
 
-    <label for="valor">Valor:</label>
-    <input type="number" name="valor" required>
+        <label for="categoria">Categoria:</label>
+        <select name="categoria" required>
+          <?php echo $options; ?>
+        </select>
 
-    <label for="categoria">Categoria:</label>
-    <select name="categoria" required>
-      <?php echo $options; // Supondo que $options tenha as categorias carregadas anteriormente ?>
-    </select>
+        <label for="tipo">Tipo:</label>
+        <select name="tipo" required>
+          <option value="receita">Receita</option>
+          <option value="despesa">Despesa</option>
+        </select>
 
-    <label for="tipo">Tipo:</label>
-    <select name="tipo" required>
-      <option value="receita">Receita</option>
-      <option value="despesa">Despesa</option>
-    </select>
+        <button type="submit">Adicionar</button>
+      </form>
+    </div>
+  </div>
+   <!-- FIM PopUp Adição de Item -->      
 
-    <button type="submit">Adicionar</button>
-  </form>
+  <script>
+    // Captura o novo botão de abrir popup com o ícone
+    const openPopupIcon = document.getElementById('btn--abrir--popup');
+    const closePopupBtn = document.getElementById('close-btn');
+    const popupContainer = document.getElementById('popup-container');
+
+    // Abrir o popup ao clicar no ícone de adicionar
+    openPopupIcon.addEventListener('click', function() {
+      popupContainer.style.display = 'flex'; // Mostrar o popup
+    });
+
+    // Fechar o popup ao clicar no botão fechar
+    closePopupBtn.addEventListener('click', function() {
+      popupContainer.style.display = 'none'; // Esconder o popup
+    });
+
+    // Fechar o popup ao clicar fora dele
+    window.addEventListener('click', function(event) {
+      if (event.target === popupContainer) {
+        popupContainer.style.display = 'none'; // Esconder o popup
+      }
+    });
+
+    window.onload = function() {
+      // Seleciona os elementos de receitas e despesas
+      var receitas = document.querySelector('.grafico--receitas');
+      var despesas = document.querySelector('.grafico--despesas');
+
+      // Obtém o valor da largura a partir dos atributos de dados
+      var larguraReceitas = receitas.getAttribute('data-largura');
+      var larguraDespesas = despesas.getAttribute('data-largura');
+
+      // Define a largura final, ativando a animação
+      receitas.style.width = larguraReceitas + 'px';
+      despesas.style.width = larguraDespesas + 'px';
+    };
+  </script>
+
 </body>
 
 </html>
