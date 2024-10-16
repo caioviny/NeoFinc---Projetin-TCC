@@ -1,0 +1,173 @@
+@import url(../../../css/root.css);
+
+/* Estilos Gerais */
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+
+/* Menu Lateral */
+.menu-lateral {
+    background-color: #003617;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 22px;
+    top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    height: 90%;
+    width: 100px;
+    cursor: pointer;
+}
+
+.menu-lateral:hover {
+    background-color: var(--cor--destaque-verde);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Container dos Cards */
+.container-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    /* Aumenta o tamanho mínimo das colunas */
+    gap: 30px;
+    /* Espaçamento entre os cards */
+    flex-grow: 1;
+    padding: 0 20px;
+    margin-left: 2px;
+    /* Espaço extra para o menu lateral */
+}
+
+
+/* Estilos dos Cards de Metas */
+.card-meta {
+    background-color: #f1eeff;
+    border-radius: 15px;
+    padding: 30px;
+    /* Aumenta o padding para mais espaçamento interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    /* Aumenta a altura mínima dos cards */
+    width: 90%;
+    /* Permite que o card ocupe a largura completa da coluna */
+    margin-bottom: 20px;
+    /* Espaçamento extra entre os cards na vertical */
+}
+
+.titulo-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    /* Aumenta o espaçamento entre o título e o conteúdo */
+    font-size: 24px;
+    /* Aumenta o tamanho da fonte dos títulos */
+}
+
+.titulo-card img {
+    width: 32px;
+    /* Aumenta o tamanho do ícone */
+    height: 32px;
+}
+
+.progresso-meta {
+    margin-top: 10px;
+}
+
+.progresso-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    /* Aumenta o espaçamento abaixo da barra de progresso */
+    font-size: 18px;
+    /* Aumenta o tamanho da fonte dos textos de progresso */
+}
+
+.barra-progresso {
+    background-color: #d9d9d9;
+    width: 200px;
+    /* Aumenta a largura da barra de progresso */
+    height: 12px;
+    /* Aumenta a altura da barra de progresso */
+    border-radius: 6px;
+    margin: 0 20px;
+    /* Aumenta o espaçamento lateral da barra de progresso */
+}
+
+.barra-progresso-preenchida {
+    background-color: #00e060;
+    height: 12px;
+    /* Aumenta a altura da barra preenchida */
+    border-radius: 6px;
+}
+
+/* Estilos pra botões */
+.botoes-meta {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.icone-lixeira {
+    color: var(--vermelho);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icone-lixeira:hover {
+    transform: scale(1.05);
+}
+
+.btn-depositar,
+.btn-historico,
+.btn-resgatar {
+    background-color: #003617;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    /* Aumenta o padding dos botões */
+    border-radius: 10px;
+    /* Aumenta o arredondamento dos botões */
+    font-size: 16px;
+    /* Aumenta o tamanho da fonte dos botões */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-depositar:hover,
+.btn-historico:hover,
+.btn-resgatar:hover {
+    background-color: var(--cor--destaque-verde);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.grafico{
+    margin-top: 40px;
+}

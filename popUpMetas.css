@@ -1,0 +1,140 @@
+@import url(../../root.css);
+
+/* Estilo para o container do popup de metas */
+.pop-up-metas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+}
+
+/* Estilo para o popup de metas */
+.pop-up-metas-conteudo {
+  background-color: var(--verde--vidro);
+  padding: 40px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 95%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  font-family: var(--fonte-principal);
+  border: 2px solid var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Estilo para o título do popup de metas */
+.pop-up-metas-conteudo h2 {
+  color: var(--cor--destaque-verde);
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Estilo para os rótulos dentro do popup de metas */
+.pop-up-metas-conteudo label {
+  color: white;
+  display: block;
+  margin-top: 15px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Estilo para os inputs dentro do popup de metas */
+.pop-up-metas-conteudo input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 5px;
+  background-color: var(--verde--vidro);
+  color: var(--fonte-branco-100);
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* Foco no input */
+.pop-up-metas-conteudo input[type="text"]:focus {
+  outline: none;
+  background-color: var(--cor--destaque-verde);
+  border: 2px solid var(--cor--destaque-verde);
+}
+
+/* Estilo para o input de data */
+input[type="date"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 5px;
+    background-color: var(--verde--vidro); /* Cor de fundo */
+    color: var(--fonte-branco-100); /* Cor do texto */
+    border: none;
+    border-radius: 4px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Para incluir padding e border no tamanho total */
+    transition: all 0.3s ease; /* Transição suave */
+  }
+  
+  /* Estilo ao focar no input de data */
+  input[type="date"]:focus {
+    outline: none; /* Remove o contorno padrão */
+    background-color: var(--cor--destaque-verde); /* Cor de fundo ao focar */
+    border: 2px solid var(--cor--destaque-verde); /* Borda ao focar */
+  }
+  
+  /* Estilo para o placeholder (opcional) */
+  input[type="date"]::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Cor do placeholder */
+    opacity: 1; /* Para garantir que o placeholder é opaco */
+  }
+  
+
+
+/* Estilo para o botão de envio dentro do popup de metas */
+.pop-up-metas-conteudo button {
+  background-color: var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 12px 25px;
+  margin-top: 25px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Hover no botão dentro do popup de metas */
+.pop-up-metas-conteudo button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+/* Botão de fechar estilizado para o popup de metas */
+.popup-metas-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 24px;
+  color: var(--fonte-branco-100);
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+/* Hover no botão de fechar */
+.popup-metas-close-btn:hover {
+  color: var(--cor--destaque-verde);
+}
