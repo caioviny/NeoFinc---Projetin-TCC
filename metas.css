@@ -22,7 +22,6 @@ body {
     padding: 20px;
 }
 
-
 /* Menu Lateral */
 .menu-lateral {
     background-color: #003617;
@@ -35,10 +34,10 @@ body {
     position: fixed;
     left: 22px;
     top: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     height: 90%;
     width: 100px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .menu-lateral:hover {
@@ -47,87 +46,65 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-
 /* Container dos Cards */
 .container-cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
-    /* Aumenta o tamanho mínimo das colunas */
-    gap: 30px;
-    /* Espaçamento entre os cards */
+    gap: 30px; /* Espaçamento entre os cards */
     flex-grow: 1;
     padding: 0 20px;
-    margin-left: 2px;
-    /* Espaço extra para o menu lateral */
+    margin-left: 2px; /* Espaço extra para o menu lateral */
 }
-
 
 /* Estilos dos Cards de Metas */
 .card-meta {
     background-color: #f1eeff;
     border-radius: 15px;
-    padding: 30px;
-    /* Aumenta o padding para mais espaçamento interno */
+    padding: 30px; /* Aumenta o padding para mais espaçamento interno */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    min-height: 350px;
-    /* Aumenta a altura mínima dos cards */
-    width: 90%;
-    /* Permite que o card ocupe a largura completa da coluna */
-    margin-bottom: 20px;
-    /* Espaçamento extra entre os cards na vertical */
+    min-height: 350px; /* Aumenta a altura mínima dos cards */
+    width: 90%; /* Permite que o card ocupe a largura completa da coluna */
+    margin-bottom: 20px; /* Espaçamento extra entre os cards na vertical */
 }
 
 .titulo-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    /* Aumenta o espaçamento entre o título e o conteúdo */
-    font-size: 24px;
-    /* Aumenta o tamanho da fonte dos títulos */
+    margin-bottom: 20px; /* Aumenta o espaçamento entre o título e o conteúdo */
+    font-size: 24px; /* Aumenta o tamanho da fonte dos títulos */
 }
 
 .titulo-card img {
-    width: 32px;
-    /* Aumenta o tamanho do ícone */
+    width: 32px; /* Aumenta o tamanho do ícone */
     height: 32px;
-}
-
-.progresso-meta {
-    margin-top: 10px;
 }
 
 .progresso-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    /* Aumenta o espaçamento abaixo da barra de progresso */
-    font-size: 18px;
-    /* Aumenta o tamanho da fonte dos textos de progresso */
+    margin: 10px 0 20px; /* Margem superior e inferior para espaçamento */
+    font-size: 18px; /* Aumenta o tamanho da fonte dos textos de progresso */
 }
 
 .barra-progresso {
     background-color: #d9d9d9;
-    width: 200px;
-    /* Aumenta a largura da barra de progresso */
-    height: 12px;
-    /* Aumenta a altura da barra de progresso */
+    width: 200px; /* Aumenta a largura da barra de progresso */
+    height: 12px; /* Aumenta a altura da barra de progresso */
     border-radius: 6px;
-    margin: 0 20px;
-    /* Aumenta o espaçamento lateral da barra de progresso */
+    margin: 0 20px; /* Aumenta o espaçamento lateral da barra de progresso */
 }
 
 .barra-progresso-preenchida {
     background-color: #00e060;
-    height: 12px;
-    /* Aumenta a altura da barra preenchida */
+    height: 100%; /* Altura completa da barra preenchida */
     border-radius: 6px;
 }
 
-/* Estilos pra botões */
+/* Estilos para botões */
 .botoes-meta {
     margin-top: 10px;
     display: flex;
@@ -137,7 +114,7 @@ body {
 .icone-lixeira {
     color: var(--vermelho);
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .icone-lixeira:hover {
@@ -150,12 +127,9 @@ body {
     background-color: #003617;
     color: #fff;
     border: none;
-    padding: 12px 18px;
-    /* Aumenta o padding dos botões */
-    border-radius: 10px;
-    /* Aumenta o arredondamento dos botões */
-    font-size: 16px;
-    /* Aumenta o tamanho da fonte dos botões */
+    padding: 12px 18px; /* Aumenta o padding dos botões */
+    border-radius: 10px; /* Aumenta o arredondamento dos botões */
+    font-size: 16px; /* Aumenta o tamanho da fonte dos botões */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -168,6 +142,123 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.grafico{
+.grafico {
     margin-top: 40px;
+}
+
+/* Estilo para o container do popup de adicionar metas */
+.pop-up-adicionar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro com opacidade */
+    z-index: 9999;
+}
+
+/* Estilo para o conteúdo do popup de adicionar metas */
+.pop-up-adicionar-conteudo {
+    background-color: var(--verde--vidro);
+    padding: 40px;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 95%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    font-family: var(--fonte-principal);
+    border: 2px solid var(--cor--destaque-verde);
+    color: var(--fonte-branco-100);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Estilo para o título do popup de adicionar metas */
+.pop-up-adicionar-conteudo h2 {
+    color: var(--cor--destaque-verde);
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Estilo para os rótulos dentro do popup de adicionar metas */
+.pop-up-adicionar-conteudo label {
+    color: white;
+    display: block;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Estilo para os inputs de texto no popup de adicionar metas */
+.pop-up-adicionar-conteudo input[type="text"],
+.pop-up-adicionar-conteudo input[type="date"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 5px;
+    background-color: var(--verde--vidro);
+    color: var(--fonte-branco-100);
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Foco nos inputs */
+.pop-up-adicionar-conteudo input[type="text"]:focus,
+.pop-up-adicionar-conteudo input[type="date"]:focus {
+    outline: none;
+    background-color: var(--cor--destaque-verde);
+    border: 2px solid var(--cor--destaque-verde);
+}
+
+/* Estilo para o botão de envio dentro do popup de adicionar metas */
+.pop-up-adicionar-conteudo button {
+    background-color: var(--cor--destaque-verde);
+    color: var(--fonte-branco-100);
+    border: none;
+    padding: 12px 25px;
+    margin-top: 25px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Hover no botão de envio */
+.pop-up-adicionar-conteudo button:hover {
+    background-color: var(--hover);
+    transform: scale(1.05);
+}
+
+/* Estilo para o botão de fechar (X) */
+.popup-adicionar-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 24px;
+    color: var(--fonte-branco-100);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+/* Hover no botão de fechar */
+.popup-adicionar-close-btn:hover {
+    color: var(--cor--destaque-verde);
+}
+
+/* Espaço adicional para a data limite */
+.data-limite {
+    margin-bottom: 20px;
 }
