@@ -169,6 +169,30 @@ $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Função para obter os dados do gráfico para uma meta específica
+function obterDadosGrafico($conn, $id_meta, $usuario_id) {
+  $sql = "SELECT tipo, SUM(valor) as total FROM transacoes WHERE meta_id = ? AND usuario_id = ? GROUP BY tipo";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ii", $id_meta, $usuario_id);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  $dados = ['deposito' => 0, 'resgate' => 0];
+  while ($row = $result->fetch_assoc()) {
+      $dados[$row['tipo']] = $row['total'];
+  }
+
+  return $dados;
+}
+
+// Consulta SQL para obter as metas do usuário atual
+$sql = "SELECT * FROM metas WHERE usuario_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+
 include("../../config/conteudos/metas/apagar_meta.php");
 include("../../config/conteudos/metas/navegacao.php");
 ?>
@@ -185,6 +209,9 @@ include("../../config/conteudos/metas/navegacao.php");
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 </head>
 
 <body>
@@ -222,6 +249,11 @@ include("../../config/conteudos/metas/navegacao.php");
 
     <!-- Cards de Metas -->
     <div class="container-cards">
+      
+    <?php while ($meta = $result->fetch_assoc()) {
+    $dadosGrafico = obterDadosGrafico($conn, $meta['id'], $usuario_id);
+?>
+
       <?php while ($meta = $result->fetch_assoc()) { ?>
         <div class="card-meta">
           <div class="titulo-card">
@@ -287,6 +319,12 @@ include("../../config/conteudos/metas/navegacao.php");
           <div class="grafico" id="chart-<?php echo $meta['id']; ?>" style="height: 200px; width: 100%;"></div>
         </div>
       <?php } ?>
+
+
+        <!-- Elemento para o gráfico -->
+        <canvas id="chart-<?php echo $meta['id']; ?>"></canvas>
+    </div>
+<?php } ?>
 
       <!-- Navegação -->
       <div class="navegacao">
@@ -378,6 +416,74 @@ include("../../config/conteudos/metas/navegacao.php");
   <script src="../../js/conteudos/metas/abrirModais.js"></script>
   <script src="../../js/conteudos/metas/dataAtual.js"></script>
   <script src="../../js/conteudos/metas/formataValor.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        <?php
+        $result->data_seek(0); // Resetar o ponteiro do resultado
+        while ($meta = $result->fetch_assoc()) {
+            $dadosGrafico = obterDadosGrafico($conn, $meta['id'], $usuario_id);
+        ?>
+            var options = {
+                chart: {
+                    type: 'bar',
+                    height: 200
+                },
+                series: [{
+                    name: 'Valores',
+                    data: [<?php echo $dadosGrafico['deposito']; ?>, <?php echo $dadosGrafico['resgate']; ?>]
+                }],
+                xaxis: {
+                    categories: ['Depósito', 'Resgate']
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart-<?php echo $meta['id']; ?>"), options);
+            chart.render();
+        <?php } ?>
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        <?php
+        $result->data_seek(0); // Resetar o ponteiro do resultado
+        while ($meta = $result->fetch_assoc()) {
+            $dadosGrafico = obterDadosGrafico($conn, $meta['id'], $usuario_id);
+        ?>
+            var ctx = document.getElementById('chart-<?php echo $meta['id']; ?>').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Depósito', 'Resgate'],
+                    datasets: [{
+                        label: 'Valores',
+                        data: [<?php echo $dadosGrafico['deposito']; ?>, <?php echo $dadosGrafico['resgate']; ?>],
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                        borderColor: ['#36A2EB', '#FF6384'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: Math.round,
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            });
+        <?php } ?>
+    });
+</script>
+
 </body>
 
 </html>
