@@ -16,83 +16,123 @@ $userId = $_SESSION['user_id'];
 
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Receive data from the form
-  $nome_meta = $_POST['nome'] ?? null;
-  $valor_meta = $_POST['valor'] ?? null;
-  $data_meta = $_POST['data'] ?? null;
-  $usuario_id = $_POST['usuario_id'] ?? null;
+    // Receive data from the form
+    $nome_meta = $_POST['nome'] ?? null;
+    $valor_meta = $_POST['valor'] ?? null;
+    $data_meta = $_POST['data'] ?? null;
 
-  // Convert the goal value to the correct format (remove commas, dots, etc.)
-  if ($valor_meta) {
-      $valor_meta = str_replace(",", ".", str_replace(".", "", $valor_meta));
-  }
-
-  // Check if it's a deposit operation
-  if (isset($_POST['valor_deposito']) && isset($_POST['id_meta'])) {
-      $id_meta = $_POST['id_meta'];
-      $valor_deposito = $_POST['valor_deposito'];
-
-      // Convert the deposit value to the correct format
-      if ($valor_deposito) {
-          $valor_deposito = str_replace(",", ".", str_replace(".", "", $valor_deposito));
-      }
-
-      // Start a transaction in the database
-      $conn->begin_transaction();
-
-      try {
-          // Update the current value of the goal with the deposit value
-          $sql_meta = "UPDATE metas SET valor_atual = valor_atual + ? WHERE id = ? AND usuario_id = ?";
-          $stmt_meta = $conn->prepare($sql_meta);
-          $stmt_meta->bind_param("dii", $valor_deposito, $id_meta, $usuario_id);
-          $stmt_meta->execute();
-
-          // Subtract the value from the transactions table
-          $sql_transacoes = "UPDATE transacoes SET valor = valor - ? WHERE usuario_id = ? AND valor >= ?";
-          $stmt_transacoes = $conn->prepare($sql_transacoes);
-          $stmt_transacoes->bind_param("dii", $valor_deposito, $usuario_id, $valor_deposito);
-          $stmt_transacoes->execute();
-
-          // Commit the transaction
-          $conn->commit();
-
-          // Redirect to the goals page with a success message
-          header("Location: ../conteudos/(7) metas.php?sucesso=deposito");
-          exit();
-      } catch (Exception $e) {
-          // If an error occurs, rollback the transaction
-          $conn->rollback();
-          echo "Error while making deposit: " . $conn->error;
-      }
-  }
-
-  // Validate the fields to add a new goal
-  if (!empty($nome_meta) && is_numeric($valor_meta) && !empty($data_meta)) {
-    $sql = "INSERT INTO metas (nome_meta, valor_alvo, data_limite, usuario_id) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssi", $nome_meta, $valor_meta, $data_meta, $usuario_id);
-
-    if ($stmt->execute()) {
-      header("Location: ../conteudos/(7) metas.php?sucesso=1");
-      exit();
-    } else {
-      echo "Error while adding goal: " . $conn->error;
+    // Convert the goal value to the correct format (remove commas, dots, etc.)
+    if ($valor_meta) {
+        $valor_meta = str_replace(",", ".", str_replace(".", "", $valor_meta));
     }
-  } else {
-    echo "Todos os campos são obrigatórios e o valor deve ser numérico!";
-  }
+
+    // Check if it's a deposit operation
+    if (isset($_POST['valor_deposito']) && isset($_POST['id_meta'])) {
+        $id_meta = $_POST['id_meta'];
+        $valor_deposito = $_POST['valor_deposito'];
+
+        // Convert the deposit value to the correct format
+        if ($valor_deposito) {
+            $valor_deposito = str_replace(",", ".", str_replace(".", "", $valor_deposito));
+        }
+
+        // Start a transaction in the database
+        $conn->begin_transaction();
+
+        try {
+            // Update the current value of the goal with the deposit value
+            $sql_meta = "UPDATE metas SET valor_atual = valor_atual + ? WHERE id = ? AND usuario_id = ?";
+            $stmt_meta = $conn->prepare($sql_meta);
+            $stmt_meta->bind_param("dii", $valor_deposito, $id_meta, $userId); // Use $userId to ensure it belongs to the logged-in user
+            $stmt_meta->execute();
+
+            // Subtract the value from the transactions table
+            $sql_transacoes = "UPDATE transacoes SET valor = valor - ? WHERE usuario_id = ? AND valor >= ?";
+            $stmt_transacoes = $conn->prepare($sql_transacoes);
+            $stmt_transacoes->bind_param("dii", $valor_deposito, $userId, $valor_deposito); // Use $userId
+            $stmt_transacoes->execute();
+
+            // Commit the transaction
+            $conn->commit();
+
+            // Redirect to the goals page with a success message
+            header("Location: ../conteudos/(7) metas.php?sucesso=deposito");
+            exit();
+        } catch (Exception $e) {
+            // If an error occurs, rollback the transaction
+            $conn->rollback();
+            echo "Error while making deposit: " . $conn->error;
+        }
+    }
+
+    // Check if it's a withdrawal operation
+    if (isset($_POST['valor_resgate']) && isset($_POST['id_meta'])) {
+        $id_meta = $_POST['id_meta'];
+        $valor_resgate = $_POST['valor_resgate'];
+
+        // Convert the withdrawal value to the correct format
+        if ($valor_resgate) {
+            $valor_resgate = str_replace(",", ".", str_replace(".", "", $valor_resgate));
+        }
+
+        // Start a transaction in the database
+        $conn->begin_transaction();
+
+        try {
+            // Update the current value of the goal with the withdrawal value
+            $sql_meta = "UPDATE metas SET valor_atual = valor_atual - ? WHERE id = ? AND usuario_id = ?";
+            $stmt_meta = $conn->prepare($sql_meta);
+            $stmt_meta->bind_param("dii", $valor_resgate, $id_meta, $userId); // Use $userId
+            $stmt_meta->execute();
+
+            // Register the transaction in the transactions table
+            $sql_transacoes = "INSERT INTO transacoes (usuario_id, meta_id, valor, tipo) VALUES (?, ?, ?, 'resgate')";
+            $stmt_transacoes = $conn->prepare($sql_transacoes);
+            $stmt_transacoes->bind_param("iid", $userId, $id_meta, $valor_resgate); // Use $userId
+            $stmt_transacoes->execute();
+
+            // Commit the transaction
+            $conn->commit();
+
+            // Redirect to the goals page with a success message
+            header("Location: ../conteudos/(7) metas.php?sucesso=resgate");
+            exit();
+        } catch (Exception $e) {
+            // If an error occurs, rollback the transaction
+            $conn->rollback();
+            echo "Error while making withdrawal: " . $e->getMessage();
+        }
+    }
+
+    // Validate the fields to add a new goal
+    if (!empty($nome_meta) && is_numeric($valor_meta) && !empty($data_meta)) {
+        $sql = "INSERT INTO metas (nome_meta, valor_alvo, data_limite, usuario_id) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssi", $nome_meta, $valor_meta, $data_meta, $userId); // Use $userId instead of user input
+
+        if ($stmt->execute()) {
+            header("Location: ../conteudos/(7) metas.php?sucesso=1");
+            exit();
+        } else {
+            echo "Error while adding goal: " . $conn->error;
+        }
+    } else {
+        echo "Todos os campos são obrigatórios e o valor deve ser numérico!";
+    }
 }
 
 // Buscar as metas do usuário logado
 $sql = "SELECT id, nome_meta, valor_alvo, valor_atual, data_limite FROM metas WHERE usuario_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $userId);
+$stmt->bind_param("i", $userId); // Use $userId to fetch only the logged-in user's goals
 $stmt->execute();
 $buscar_metas = $stmt->get_result();
 
 include("../../config/conteudos/metas/apagar_meta.php");
 include("../../config/conteudos/metas/navegacao.php");
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -176,11 +216,63 @@ include("../../config/conteudos/metas/navegacao.php");
               </div>
             <?php } ?>
           </div>
-        </div>
-                  <!-- Elemento do gráfico -->
-                  <div class="grafico" id="chart-<?php echo $meta['id']; ?>"></div>
+
+          <div class="data-limite">
+            <span>Prazo para Meta: <?php echo date('d/m/Y', strtotime($meta['data_limite'])); ?></span>
+          </div>
+          <div class="botoes-meta">
+            <!-- Deposit Button -->
+            <button class="btn-depositar" onclick="abrirModalDepositar(<?php echo $meta['id']; ?>)">
+              <div for="icon2"><img src="../../assets/icons/icon--resgatar--metas.svg" alt="depositar"></div>
+              Depositar
+            </button>
+            <!-- Withdraw Button -->
+            <button class="btn-resgatar" onclick="abrirModalResgatar(<?php echo $meta['id']; ?>)">
+              <div for="icon2"><img src="../../assets/icons/icon--depositar--meta.svg" alt="resgatar"></div> Resgatar
+            </button>
+          </div>
+          <!-- Elemento do gráfico -->
+          <div class="grafico" id="chart-<?php echo $meta['id']; ?>"></div>
         </div>
       <?php } ?>
+    </div>
+
+    <!-- DEPOSIT POPUP -->
+    <div class="pop-up-depositar-container" id="pop-up-depositar-container" style="display: none;">
+      <div class="pop-up-depositar-conteudo">
+        <span class="popup-depositar-close-btn" id="btn-fechar-popup-depositar">&times;</span>
+        <h2 ss="depositar-titulo">Depositar Valor</h2>
+
+        <!-- Form to deposit -->
+        <form method="POST" action="" id="form-depositar">
+          <label for="valor_deposito">Valor a Depositar:</label>
+          <input type="text" id="valor_deposito" name="valor_deposito" required placeholder="0,00">
+
+          <input type="hidden" name="usuario_id" value="<?php echo $userId; ?>"> <!-- Usuário logado -->
+          <input type="hidden" name="id_meta" id="id_meta_depositar" value="">
+
+          <button type="submit">Depositar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- WITHDRAW POPUP -->
+    <div class="pop-up-resgatar-container" id="pop-up-resgatar-container" style="display: none;">
+      <div class="pop-up-resgatar-conteudo">
+        <span class="popup-resgatar-close-btn" id="btn-fechar-popup-resgatar">&times;</span>
+        <h2 class="resgatar-titulo">Resgatar Valor</h2>
+
+        <!-- Form to withdraw -->
+        <form method="POST" action="" id="form-resgatar">
+          <label for="valor_resgatar">Valor a Resgatar:</label>
+          <input type="text" id="valor_resgatar" name="valor_resgatar" required placeholder="0,00">
+
+          <input type="hidden" name="usuario_id" value="<?php echo $userId; ?>"> <!-- Usuário logado -->
+          <input type="hidden" name="id_meta" id="id_meta_resgatar" value="">
+
+          <button type="submit">Resgatar</button>
+        </form>
+      </div>
     </div>
 
     <!-- Script do ApexCharts para os gráficos -->
@@ -201,12 +293,8 @@ include("../../config/conteudos/metas/navegacao.php");
     </script>
   </div>
 
-
-
-    </div>
-  </div>
-
+  <script src="../../js/conteudos/metas/abrirModais.js"></script>
+  <script src="../../js/conteudos/metas/dataAtual.js"></script>
+  <script src="../../js/conteudos/metas/formataValor.js"></script>
 </body>
 </html>
-
-          
