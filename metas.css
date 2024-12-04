@@ -2,195 +2,677 @@
 
 /* Estilos Gerais */
 body {
-    font-family: var(--fonte-principal);
-    background-color: var(--background);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column; /* Adicionado para alinhar conteúdo verticalmente */
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
+  font-family: var(--fonte-principal);
+  background-color: var(--background);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
 }
 
+/* Container Principal */
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column; /* Adicionado para garantir que os itens fiquem em colunas */
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 1200px;
-    padding: 20px;
-    margin-bottom: 20px; /* Espaço entre os cards e a navegação */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
 }
 
-/* Menu Lateral */
-.menu-lateral {
-    background-color: #003617;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    left: 22px;
-    top: 20px;
-    height: 90%;
-    width: 100px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+.titulo-metas h1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.menu-lateral:hover {
-    background-color: var(--cor--destaque-verde);
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.titulo-metas h1 img {
+  height: 24px;
+  width: auto;
+}
+
+/* Botão Adicionar */
+.container--add--metas {
+  position: fixed;
+  left: 20px;
+  top: 55%;
+  transform: translateY(-50%);
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.adicionar--btn {
+  background-color: var(--card-categorias);
+  border: 2px solid var(--cor--destaque-verde);
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  width: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.adicionar--btn:hover {
+  box-shadow: 0 0 5px var(--cor--destaque-verde), 0 0 5px var(--cor--destaque-verde),
+    0 0 5px var(--cor--destaque-verde), 0 0 5px var(--cor--destaque-verde);
+  scale: 1.01;
+}
+
+.adicionar--btn img {
+  border-radius: 16px;
+  transition: all 0.1s ease-in-out;
+}
+
+.adicionar--btn:hover img {
+  box-shadow: 0 0 10px var(--cor--destaque-verde), 0 0 20px var(--cor--destaque-verde),
+    0 0 30px var(--cor--destaque-verde), 0 0 40px var(--cor--destaque-verde);
+  scale: 1.1;
 }
 
 /* Container dos Cards */
 .container-cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-    gap: 30px; /* Espaçamento entre os cards */
-    flex-grow: 1;
-    padding: 0 20px;
-    margin-left: 130px; /* Espaço ajustado para o menu lateral */
-    width: calc(100% - 150px); /* Ajusta a largura para não sobrepor a barra lateral */
-    margin-bottom: 20px; /* Espaço entre os cards e a navegação */
-    margin-top: 40px; /* Aumenta o espaçamento no topo */
+  margin-left: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 40px;
 }
-
 
 /* Estilos dos Cards de Metas */
 .card-meta {
-    background-color: #f1eeff;
-    border-radius: 15px;
-    padding: 30px; /* Aumenta o padding para mais espaçamento interno */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    min-height: 350px; /* Aumenta a altura mínima dos cards */
-    width: 90%; /* Permite que o card ocupe a largura completa da coluna */
-    margin-bottom: 20px; /* Espaçamento extra entre os cards na vertical */
+  background-color: #f1eeff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+  min-width: 800px;
 }
 
 .titulo-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px; /* Aumenta o espaçamento entre o título e o conteúdo */
-    font-size: 24px; /* Aumenta o tamanho da fonte dos títulos */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
 .titulo-card img {
-    width: 32px; /* Aumenta o tamanho do ícone */
-    height: 32px;
-}
-.progresso-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 20px; /* Espaço entre a barra e a mensagem */
+  width: 32px;
+  height: 32px;
 }
 
-.barra-progresso {
-    width: 100%;
-    height: 20px;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 10px;
-    margin-bottom: 10px; /* Espaço entre a barra e os textos */
-}
-
-.barra-progresso-preenchida {
-    height: 100%;
-    background-color: #28a745; /* Verde para indicar progresso */
-    border-radius: 10px 0 0 10px;
-}
-
-.mensagem-meta-alcancada {
-    font-size: 18px;
-    color: #28a745; /* Verde de sucesso */
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: left; /* Garante que a mensagem fique alinhada à esquerda */
-    width: 100%; /* Garante que a mensagem ocupe toda a linha */
-}
-
-.progresso-meta span {
-    font-size: 16px;
-    margin-right: 5px;
-}
-
-
-/* Estilos para botões */
-.botoes-meta {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-around;
-}
-
+/* Estilos para o botão de excluir (lixeira) */
 .icone-lixeira {
-    background: none; /* Remove o background */
-    border: none; /* Remove a borda */
-    color: red; /* Define o ícone como vermelho */
-    cursor: pointer;
-    font-size: 24px; /* Aumenta o tamanho do ícone */
-    transition: transform 0.3s ease;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 24px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  z-index: 1;
 }
 
 .icone-lixeira:hover {
-    transform: scale(1.05); /* Efeito de aumentar ligeiramente ao passar o mouse */
+  transform: scale(1.2);
+  color: darkred;
 }
 
+/* Barra de Progresso */
+.progresso-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.barra-progresso {
+  width: 100%;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.barra-progresso-preenchida {
+  height: 100%;
+  background-color: #28a745;
+  border-radius: 10px 0 0 10px;
+}
+
+.mensagem-meta-alcancada {
+  font-size: 18px;
+  color: #28a745;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.progresso-meta span {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+/* Estilos para botões */
+.botoes-meta {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
 
 .btn-depositar,
 .btn-historico,
 .btn-resgatar {
-    background-color: #003617;
-    color: #fff;
-    border: none;
-    padding: 12px 18px; /* Aumenta o padding dos botões */
-    border-radius: 10px; /* Aumenta o arredondamento dos botões */
-    font-size: 16px; /* Aumenta o tamanho da fonte dos botões */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #003617;
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-depositar:hover,
 .btn-historico:hover,
 .btn-resgatar:hover {
-    background-color: var(--cor--destaque-verde);
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--cor--destaque-verde);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para o container do formulário */
+.menu-criar-meta {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: none;
+}
+
+/* Estilo para o formulário */
+.menu-criar-meta form {
+  background-color: var(--verde--vidro);
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  max-width: 95%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  font-family: var(--fonte-principal);
+  border: 2px solid var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Estilo para o botão de fechar */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: var(--fonte-branco-100);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: var(--cor--destaque-verde);
+}
+
+/* Estilo para os rótulos do formulário */
+.menu-criar-meta form label {
+  color: white;
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Estilo para os inputs de texto e número */
+.menu-criar-meta form input[type="text"],
+.menu-criar-meta form input[type="number"],
+.menu-criar-meta form input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: var(--verde--vidro);
+  color: var(--fonte-branco-100);
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Foco nos inputs */
+.menu-criar-meta form input[type="text"]:focus,
+.menu-criar-meta form input[type="number"]:focus,
+.menu-criar-meta form input[type="date"]:focus {
+  outline: none;
+  background-color: var(--cor--destaque-verde);
+  border: 2px solid var(--cor--destaque-verde);
+}
+
+/* Estilo para o botão de envio */
+.menu-criar-meta form button {
+  background-color: var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Hover no botão de envio */
+.menu-criar-meta form button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+/* Estilo do container dos formulários */
+.container-formularios {
+  display: flex; 
+  gap: 15px; 
+  justify-content: space-between;
+  align-items: stretch; 
+  width: 100%;
+  padding: 10px; 
+}
+
+/* Estilo para os formulários */
+.form-resgatar,
+.form-depositar {
+  background-color: var(--verde--vidro);
+  padding: 15px;
+  border-radius: 12px;
+  margin: 0; 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  font-family: var(--fonte-principal);
+  border: 2px solid var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  flex-grow: 1; 
+  width: auto; 
+  animation: formFadeIn 0.5s ease-in-out;
+}
+
+/* Estilo para os rótulos dos formulários */
+.form-resgatar label,
+.form-depositar label {
+  color: white;
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Estilo para os inputs de número */
+.form-resgatar input[type="number"],
+.form-depositar input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: var(--verde--vidro);
+  color: var(--fonte-branco-100);
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Foco nos inputs */
+.form-resgatar input[type="number"]:focus,
+.form-depositar input[type="number"]:focus {
+  outline: none;
+  background-color: var(--cor--destaque-verde);
+  border: 2px solid var(--cor--destaque-verde);
+}
+
+/* Estilo para os botões de envio */
+/* Botões de depositar e resgatar */
+.btn--depositar,
+.btn--resgatar {
+  background-color: var(--cor-terciaria);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Botão de voltar (<) */
+.back-btn {
+  background-color: var(--cor-terciaria);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 50px; 
+  height: 50px; 
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: all 0.3s ease; 
+}
+
+.back-btn:hover {
+  background-color: var(--cor-hover, #388E3C); 
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.1); 
+}
+
+.back-btn:active {
+  transform: scale(1); 
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15); /
 }
 
 
-/*======================
-Gráficos CSS
-========================*/
+/* Hover nos botões de envio */
+.form-resgatar button:hover,
+.form-depositar button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+/* Ajuste para a seção de histórico */
+.historico-transacoes {
+  background-color: var(--cor-terciaria);
+  padding: 20px; /* Aumenta o padding para mais espaço interno */
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  font-family: var(--fonte-principal);
+  border: 2px solid var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  flex-grow: 1; /* Faz o histórico ocupar o mesmo espaço que os formulários */
+  width: auto; /* Permite ajuste automático no layout flex */
+  animation: formFadeIn 0.5s ease-in-out;
+}
 
-  /* Estilo geral para os gráficos */
-  .grafico {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 6px; /* Espaçamento interno */
-    border-radius: 15px; /* Bordas arredondadas */
-    transition: transform 0.3s ease; /* Transição suave para hover */
-  }
+/* Ajuste para o título do histórico */
+.historico-transacoes h3 {
+  color: var(--fonte-branco-100);
+  margin-bottom: 15px;
+  font-size: 22px; /* Título maior */
+  font-weight: 600;
+  text-align: center; /* Centraliza o título */
+}
 
-  .grafico:hover {
-    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
-  }
+/* Ajuste para a tabela do histórico */
+.historico-transacoes table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px; /* Tamanho do texto da tabela */
+}
 
-  /* Estilo dos rótulos dos gráficos */
-  .apexcharts-datalabels {
-    font-family: 'Arial', sans-serif; /* Fonte mais moderna */
-    font-weight: bold; /* Texto em negrito */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Sombra do texto */
+/* Ajuste para os cabeçalhos da tabela */
+.historico-transacoes th {
+  background-color: var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  padding: 12px; /* Aumenta o padding */
+  text-align: left;
+  font-size: 16px; /* Texto maior nos cabeçalhos */
+  font-weight: 600;
+}
+
+/* Ajuste para as células da tabela */
+.historico-transacoes td {
+  background-color: var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  padding: 12px; /* Padding maior */
+  text-align: left;
+  font-size: 14px; /* Texto maior nas células */
+  border-bottom: 1px solid var(--cor--destaque-verde);
+}
+
+/* Ajuste para as linhas pares da tabela */
+.historico-transacoes tr:nth-child(even) td {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste para as linhas ímpares da tabela */
+.historico-transacoes tr:nth-child(odd) td {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Animação de fade-in para os botões de ação */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação de fade-in para os formulários */
+@keyframes formFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Estilo para os botões de ação */
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  margin-top: 20px; /* Adiciona margem superior para evitar sobreposição com o gráfico */
+}
+
+.actionButtons button {
+  display: flex; /* Usa flexbox para organizar os elementos internos */
+  flex-direction: column; /* Dispõe os elementos em uma coluna */
+  align-items: center; /* Centraliza os elementos horizontalmente */
+  justify-content: center; /* Centraliza os elementos verticalmente */
+  flex-grow: 1; /* Permite que os botões ocupem o espaço disponível de forma igual */
+  text-align: center; /* Centraliza o texto dentro dos botões */
+  padding: 10px; /* Ajusta o padding para garantir espaço interno */
+  border: none;
+  border-radius: 5px;
+  background-color: var(--cor-terciaria);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.actionButtons button img {
+  margin-top: 10px; /* Adiciona espaço entre o texto e a imagem */
+}
+
+.actionButtons button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+/* Estilo para o botão de selecionar ação */
+.selectActionBtn {
+  background-color: var(--cor-terciaria);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Hover no botão de selecionar ação */
+.selectActionBtn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Estilo para os botões de ação */
+.actionBtn {
+  background-color: var(--cor-terciaria);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Hover nos botões de ação */
+.actionBtn:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+/* Estilo para a mensagem de parabenização */
+.congratulations-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  display: none;
+  text-align: center;
+  font-size: 24px;
+}
+
+.emoji {
+  position: fixed;
+  font-size: 36px;
+  z-index: 1001;
+  animation: moveEmoji 8s linear;
+}
+
+@keyframes moveEmoji {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+.finalizar-meta-btn {
+  margin-top: 10px;
+  background-color: var(--cor-terciaria);
+  color: white;
+  border: none;
+  padding: 10px 0; /* Ajusta o padding para 0 nas laterais */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  display: block; /* Garante que o botão ocupe toda a largura disponível */
+  margin: 10px auto 0 auto; /* Centraliza o botão horizontalmente */
+  width: 100%; /* Ocupa toda a largura disponível */
+  text-align: center; /* Centraliza o texto dentro do botão */
+}
+
+.finalizar-meta-btn:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para os botões de navegação */
+.navigation-buttons {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.navigation-buttons button {
+  background-color: var(--cor-terciaria);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.navigation-buttons button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+/* Animação de transição entre os cards */
+@keyframes cardTransition {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-meta {
+  display: none;
+  animation: cardTransition 0.5s ease-in-out;
+  
+}
+
+.card-meta.active {
+  display: block;
+  width: 140%; /* Aumenta o tamanho do card */
+  max-width: 1200px; /* Define um tamanho máximo para o card */
+  margin: 20px auto; /* Centraliza o card horizontalmente */
+}
+
+/* Estilo para o gráfico */
+.grafico {
+  width: 100%;
+  height: 300px; /* Aumenta a altura do gráfico */
+  margin: 20px auto; /* Centraliza o gráfico horizontalmente */
+}
