@@ -670,9 +670,13 @@ body {
   margin: 20px auto; /* Centraliza o card horizontalmente */
 }
 
-/* Estilo para o gráfico */
-.grafico {
-  width: 100%;
-  height: 300px; /* Aumenta a altura do gráfico */
-  margin: 20px auto; /* Centraliza o gráfico horizontalmente */
+.grafico{
+  margin-top: 100px;
+}
+
+.centered-chart {
+  position: fixed;         /* Posiciona o elemento em relação à janela */
+  top: 50%;                /* Coloca o topo do elemento 50% da altura da tela */
+  left: 50%;               /* Coloca a esquerda do elemento 50% da largura da tela */
+  transform: translate(-50%, -50%); /* Ajusta o posicionamento para centralizar perfeitamente */
 }
