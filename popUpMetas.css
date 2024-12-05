@@ -1,7 +1,208 @@
-@import url(../../root.css);
+@import url(../../../css/root.css);
 
-/* Estilo para o container do popup de metas */
-.pop-up-metas-container {
+/* Estilos Gerais */
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--background);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+/* Container Principal */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.titulo-metas h1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.titulo-metas h1 img {
+  height: 24px;
+  width: auto;
+}
+
+/* Botão Adicionar */
+.container--add--metas {
+  position: fixed;
+  left: 20px;
+  top: 55%;
+  transform: translateY(-50%);
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.adicionar--btn {
+  background-color: var(--card-categorias);
+  border: 2px solid var(--cor--destaque-verde);
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  width: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.adicionar--btn:hover {
+  box-shadow: 0 0 5px var(--cor--destaque-verde), 0 0 5px var(--cor--destaque-verde),
+    0 0 5px var(--cor--destaque-verde), 0 0 5px var(--cor--destaque-verde);
+  scale: 1.01;
+}
+
+.adicionar--btn img {
+  border-radius: 16px;
+  transition: all 0.1s ease-in-out;
+}
+
+.adicionar--btn:hover img {
+  box-shadow: 0 0 10px var(--cor--destaque-verde), 0 0 20px var(--cor--destaque-verde),
+    0 0 30px var(--cor--destaque-verde), 0 0 40px var(--cor--destaque-verde);
+  scale: 1.1;
+}
+
+/* Container dos Cards */
+.container-cards {
+  margin-left: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+/* Estilos dos Cards de Metas */
+.card-meta {
+  background-color: #f1eeff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.titulo-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.titulo-card img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Estilos para o botão de excluir (lixeira) */
+.icone-lixeira {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 24px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  z-index: 1;
+}
+
+.icone-lixeira:hover {
+  transform: scale(1.2);
+  color: darkred;
+}
+
+/* Barra de Progresso */
+.progresso-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.barra-progresso {
+  width: 100%;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.barra-progresso-preenchida {
+  height: 100%;
+  background-color: #28a745;
+  border-radius: 10px 0 0 10px;
+}
+
+.mensagem-meta-alcancada {
+  font-size: 18px;
+  color: #28a745;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.progresso-meta span {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+/* Estilos para botões */
+.botoes-meta {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.btn-depositar,
+.btn-historico,
+.btn-resgatar {
+  background-color: #003617;
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 5px;
+}
+
+.btn-depositar:hover,
+.btn-historico:hover,
+.btn-resgatar:hover {
+  background-color: var(--cor--destaque-verde);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para o container do formulário */
+.menu-criar-meta {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,129 +213,566 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 9999;
+  display: none;
 }
 
-/* Estilo para o popup de metas */
-.pop-up-metas-conteudo {
+/* Estilo para o formulário */
+.menu-criar-meta form {
   background-color: var(--verde--vidro);
-  padding: 40px;
+  padding: 20px;
   border-radius: 12px;
-  width: 400px;
-  max-width: 95%;
+  width: 90%;
+  max-width: 400px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   font-family: var(--fonte-principal);
   border: 2px solid var(--cor--destaque-verde);
   color: var(--fonte-branco-100);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   max-height: 90vh;
   overflow-y: auto;
+  position: relative;
 }
 
-/* Estilo para o título do popup de metas */
-.pop-up-metas-conteudo h2 {
+/* Estilo para o botão de fechar */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: var(--fonte-branco-100);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
   color: var(--cor--destaque-verde);
-  margin-bottom: 20px;
-  font-size: 24px;
-  text-align: center;
-  font-weight: 600;
 }
 
-/* Estilo para os rótulos dentro do popup de metas */
-.pop-up-metas-conteudo label {
+/* Estilo para os rótulos do formulário */
+.menu-criar-meta form label {
   color: white;
   display: block;
-  margin-top: 15px;
-  font-size: 15px;
+  margin-top: 10px;
+  font-size: 14px;
   font-weight: 500;
 }
 
-/* Estilo para os inputs dentro do popup de metas */
-.pop-up-metas-conteudo input[type="text"] {
+/* Estilo para os inputs de texto e número */
+.menu-criar-meta form input[type="text"],
+.menu-criar-meta form input[type="number"],
+.menu-criar-meta form input[type="date"] {
   width: 100%;
-  padding: 12px 20px;
+  padding: 10px;
   margin-top: 5px;
   background-color: var(--verde--vidro);
   color: var(--fonte-branco-100);
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border 0.3s ease;
 }
 
-/* Foco no input */
-.pop-up-metas-conteudo input[type="text"]:focus {
+/* Foco nos inputs */
+.menu-criar-meta form input[type="text"]:focus,
+.menu-criar-meta form input[type="number"]:focus,
+.menu-criar-meta form input[type="date"]:focus {
   outline: none;
   background-color: var(--cor--destaque-verde);
   border: 2px solid var(--cor--destaque-verde);
 }
 
-/* Estilo para o input de data */
-input[type="date"] {
-    width: 100%;
-    padding: 12px 20px;
-    margin-top: 5px;
-    background-color: var(--verde--vidro); /* Cor de fundo */
-    color: var(--fonte-branco-100); /* Cor do texto */
-    border: none;
-    border-radius: 4px; /* Bordas arredondadas */
-    box-sizing: border-box; /* Para incluir padding e border no tamanho total */
-    transition: all 0.3s ease; /* Transição suave */
-  }
-  
-  /* Estilo ao focar no input de data */
-  input[type="date"]:focus {
-    outline: none; /* Remove o contorno padrão */
-    background-color: var(--cor--destaque-verde); /* Cor de fundo ao focar */
-    border: 2px solid var(--cor--destaque-verde); /* Borda ao focar */
-  }
-  
-  /* Estilo para o placeholder (opcional) */
-  input[type="date"]::placeholder {
-    color: rgba(255, 255, 255, 0.7); /* Cor do placeholder */
-    opacity: 1; /* Para garantir que o placeholder é opaco */
-  }
-  
-
-
-/* Estilo para o botão de envio dentro do popup de metas */
-.pop-up-metas-conteudo button {
+/* Estilo para o botão de envio */
+.menu-criar-meta form button {
   background-color: var(--cor--destaque-verde);
   color: var(--fonte-branco-100);
   border: none;
-  padding: 12px 25px;
-  margin-top: 25px;
+  padding: 10px;
+  margin-top: 20px;
   width: 100%;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   transition: background-color 0.3s ease, transform 0.2s;
 }
 
-/* Hover no botão dentro do popup de metas */
-.pop-up-metas-conteudo button:hover {
+/* Hover no botão de envio */
+.menu-criar-meta form button:hover {
   background-color: var(--hover);
   transform: scale(1.05);
 }
 
-/* Botão de fechar estilizado para o popup de metas */
-.popup-metas-close-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-size: 24px;
-  color: var(--fonte-branco-100);
-  cursor: pointer;
-  padding: 0;
-  background: none;
-  border: none;
-  transition: color 0.3s ease;
+/* Estilo do container dos formulários */
+.container-formularios {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  padding: 10px;
+  flex-wrap: wrap;
 }
 
-/* Hover no botão de fechar */
-.popup-metas-close-btn:hover {
-  color: var(--cor--destaque-verde);
+/* Estilo para os formulários */
+.form-resgatar,
+.form-depositar {
+  background-color: var(--verde--vidro);
+  padding: 15px;
+  border-radius: 12px;
+  margin: 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  font-family: var(--fonte-principal);
+  border: 2px solid var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  flex-grow: 1;
+  width: 100%;
+  max-width: 400px;
+  animation: formFadeIn 0.5s ease-in-out;
+}
+
+/* Estilo para os rótulos dos formulários */
+.form-resgatar label,
+.form-depositar label {
+  color: white;
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Estilo para os inputs de número */
+.form-resgatar input[type="number"],
+.form-depositar input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: var(--verde--vidro);
+  color: var(--fonte-branco-100);
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Foco nos inputs */
+.form-resgatar input[type="number"]:focus,
+.form-depositar input[type="number"]:focus {
+  outline: none;
+  background-color: var(--cor--destaque-verde);
+  border: 2px solid var(--cor--destaque-verde);
+}
+
+/* Estilo para os botões de envio */
+/* Botões de depositar e resgatar */
+.btn--depositar,
+.btn--resgatar {
+  background-color: var(--cor-terciaria);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Botão de voltar (<) */
+.back-btn {
+  background-color: var(--cor-terciaria);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: var(--cor-hover, #388E3C);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.back-btn:active {
+  transform: scale(1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover nos botões de envio */
+.form-resgatar button:hover,
+.form-depositar button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+/* Ajuste para a seção de histórico */
+.historico-transacoes {
+  background-color: var(--cor-terciaria);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  font-family: var(--fonte-principal);
+  border: 2px solid var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  flex-grow: 1;
+  width: 100%;
+  max-width: 800px;
+  animation: formFadeIn 0.5s ease-in-out;
+}
+
+/* Ajuste para o título do histórico */
+.historico-transacoes h3 {
+  color: var(--fonte-branco-100);
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Ajuste para a tabela do histórico */
+.historico-transacoes table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Ajuste para os cabeçalhos da tabela */
+.historico-transacoes th {
+  background-color: var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Ajuste para as células da tabela */
+.historico-transacoes td {
+  background-color: var(--cor--destaque-verde);
+  color: var(--fonte-branco-100);
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid var(--cor--destaque-verde);
+}
+
+/* Ajuste para as linhas pares da tabela */
+.historico-transacoes tr:nth-child(even) td {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste para as linhas ímpares da tabela */
+.historico-transacoes tr:nth-child(odd) td {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Animação de fade-in para os botões de ação */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação de fade-in para os formulários */
+@keyframes formFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Estilo para os botões de ação */
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actionButtons button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--cor-terciaria);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.actionButtons button img {
+  margin-top: 10px;
+}
+
+.actionButtons button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+/* Estilo para o botão de selecionar ação */
+.selectActionBtn {
+  background-color: var(--cor-terciaria);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Hover no botão de selecionar ação */
+.selectActionBtn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Estilo para os botões de ação */
+.actionBtn {
+  background-color: var(--cor-terciaria);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Hover nos botões de ação */
+.actionBtn:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+/* Estilo para a mensagem de parabenização */
+.congratulations-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  display: none;
+  text-align: center;
+  font-size: 24px;
+}
+
+.emoji {
+  position: fixed;
+  font-size: 36px;
+  z-index: 1001;
+  animation: moveEmoji 8s linear;
+}
+
+@keyframes moveEmoji {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+.finalizar-meta-btn {
+  margin-top: 10px;
+  background-color: var(--cor-terciaria);
+  color: white;
+  border: none;
+  padding: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 10px auto 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.finalizar-meta-btn:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para os botões de navegação */
+.navigation-buttons {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.navigation-buttons button {
+  background-color: var(--cor-terciaria);
+  color: var(--fonte-branco-100);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.navigation-buttons button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+/* Animação de transição entre os cards */
+@keyframes cardTransition {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-meta {
+  display: none;
+  animation: cardTransition 0.5s ease-in-out;
+}
+
+.card-meta.active {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.grafico {
+  margin-top: 100px;
+}
+
+.centered-chart {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .container {
+    padding: 10px;
+  }
+
+  .card-meta {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container-cards {
+    margin-left: 0;
+  }
+
+  .card-meta {
+    width: 100%;
+  }
+
+  .botoes-meta {
+    flex-direction: column;
+  }
+
+  .form-resgatar,
+  .form-depositar {
+    width: 100%;
+  }
+
+  .historico-transacoes {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 5px;
+  }
+
+  .card-meta {
+    padding: 15px;
+  }
+
+  .titulo-card {
+    font-size: 18px;
+  }
+
+  .titulo-card img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .botoes-meta {
+    flex-direction: column;
+  }
+
+  .btn-depositar,
+  .btn-historico,
+  .btn-resgatar {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .form-resgatar,
+  .form-depositar {
+    padding: 10px;
+  }
+
+  .historico-transacoes {
+    padding: 10px;
+  }
+
+  .historico-transacoes h3 {
+    font-size: 18px;
+  }
+
+  .historico-transacoes th,
+  .historico-transacoes td {
+    font-size: 12px;
+  }
 }
